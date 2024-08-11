@@ -1,17 +1,30 @@
 Day 15
 #LARAVEL
 Teknologi framework yang mengadopsi metode MVC (MODEL, VIEW, CONTROLLER)
-Model = Representasi dari Table pada database (Entity)
-View = Resource yang digunakan untuk menampilkan halaman pada website (frontend)
-Controller = Base atau Otak atau Terminal atau Si Pengatur dari semua bisnis logic pada aplikasi kita
-Route = Configurasi untuk mengatur alamat pada setiap request di aplikasi
-ENV = Secret file yang berguna untuk mengatur environment variable (settingan database)
-Composer.json = Berfungsi untuk sebagai package manager untuk penggunaan library terkait project laravel kita
+* Model = Representasi dari Table pada database (Entity)
+* View = Resource yang digunakan untuk menampilkan halaman pada website (frontend)
+* Controller = Base atau Otak atau Terminal atau Si Pengatur dari semua bisnis logic pada aplikasi kita
+* Route = Configurasi untuk mengatur alamat pada setiap request di aplikasi
+* ENV = Secret file yang berguna untuk mengatur environment variable (settingan database)
+* Composer.json = Berfungsi untuk sebagai package manager untuk penggunaan library terkait project laravel kita
 
 
 #GIT
 Tools untuk menyimpan semua code base kita
-Git init . = berfungsi untuk menginisiasi project kita (firs time) / initial
+* git init . = berfungsi untuk menginisiasi project kita (firs time) / initial
 warna hijau menandakan file/folder baru
-git add . = untuk menambahkan list file pada project ke staging git
-git commit -m "pesan - instalation laravel"  = untuk finalisasi perubahan secara fix
+
+* git add . = untuk menambahkan list file pada project ke staging git
+
+* git commit -m "pesan - instalation laravel"  = untuk finalisasi perubahan secara fix
+
+* membuat repo baru
+
+* git push = untuk mengupload code ke git (github, gitlab, bitbucket)
+    1. git push origin main/master
+
+- branch = untuk memisahkan code kita dengan yang lainnya(2 atau lebih colaborator)
+    * ada 2 kolaborator
+    * default git MAIN, akan digunakan untuk sumber ke server
+    * colaborator 1 = create & use branch JONI
+    * colaborator 2 = create & use branch ANDI
