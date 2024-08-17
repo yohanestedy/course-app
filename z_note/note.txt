@@ -28,3 +28,40 @@ warna hijau menandakan file/folder baru
     * default git MAIN, akan digunakan untuk sumber ke server
     * colaborator 1 = create & use branch JONI
     * colaborator 2 = create & use branch ANDI
+
+
+Note Day17
+1.flow clonning
+    - git clone {url}
+    - composer install
+    - cp .env.example .env
+    - php artisan key:generate
+    - php artisan serve
+
+    - git branch tedy
+    - git checkout tedy
+
+2. Flow Hello World
+    1. Controller
+        - app/Http/Controllers
+        - php artisan make:controller HelloController = Command laravel untuk membuat controller
+        - bikin/siapin function di HelloController nya untuk ke route (ex: index())
+        - setelah dari routes/web.php buat return 
+            - return view('hello.index');
+
+    2. Routing
+        - routes/web.php
+        - buat routingan 
+            - buat routing jika ada yang mengakses misal baseurl/hello-world
+            - Route::get('/hello-world', [HelloController::class, 'index']);
+            - pastikan ada use App\Http\Controllers\HelloController;
+            - dimana index itu function yang sudah di buat di HelloController
+
+
+
+    3. View
+        - resource/views
+        - buat folder di views contoh folder dengan nama hello
+        - buat file view di folder hello
+            - index.blade.php
+            - isi dengan html contoh
