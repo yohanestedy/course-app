@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,8 @@ Route::get('/', function () {
 });
 
 Route::get('/hello-world', [HelloController::class, 'index']);
+
+// BLOG
+Route::prefix('/blog')->group(function(){
+    Route::get('/', [BlogController::class, 'index']);
+});
