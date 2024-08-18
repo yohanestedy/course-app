@@ -65,3 +65,13 @@ Note Day17
         - buat file view di folder hello
             - index.blade.php
             - isi dengan html contoh
+
+Day18 
+
+Day19
+    1. @yield('mainComponen') = Patokan atau tempat penampung untuk component yang akan di implementasi
+    2. @section('mainComponent') = sebagai component yang akan di implementasikan  pada main base template
+    3. @extend('alamat base layout/template') = sebagai import base template 
+        - @extend('blog.layout.main')
+
+    
