@@ -6,12 +6,15 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Blog Template · Bootstrap v5.0</title>
+    <title>Course - Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
 
+    
+
     <!-- Bootstrap core CSS -->
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{asset('css/blog.css')}}" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -33,7 +36,6 @@
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="{{asset('css/blog.css')}}" rel="stylesheet">
   </head>
   <body>
     
@@ -54,7 +56,6 @@
       </div>
     </div>
   </header>
-  <input type="text" autocomplete="false" name="" id="">
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
       <a class="p-2 link-secondary" href="#">World</a>
@@ -74,6 +75,9 @@
 </div>
 
 @yield('mainComponent')
+
+
+
 
 <footer class="blog-footer">
   <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
