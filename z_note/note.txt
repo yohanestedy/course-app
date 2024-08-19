@@ -74,4 +74,16 @@ Day19
     3. @extend('alamat base layout/template') = sebagai import base template 
         - @extend('blog.layout.main')
 
+Day20
+GIT
+- git fetch origin tedy 
+- git merge origin tedy
+
+- git pull origin tedy
+
+= git pull = digunakan untuk mengambil commitan terbaru (update)
+= git fetch & merge = digunakan untuk mengambil commitan terbaru (update), tapi udah sepaket. 
+- fetch, command untuk mengunduh konten dari repositori remote 
+- merge, menggabungkan perubahan tersebut ke dalam cabang saat ini di repositori lokal.
+
     
