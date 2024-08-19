@@ -23,26 +23,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
-// http://url.com/hello-world
-Route::get('/hello-world', [HelloController::class, 'index']);
-
-
-// -- BLOG --
-=======
 Route::get('/hello-world', [HelloController::class, 'index']);
 
 // BLOG
->>>>>>> origin/tedy
 Route::prefix('/blog')->group(function(){
     Route::get('/', [BlogController::class, 'index']);
     Route::get('/show', [BlogController::class, 'show']);
 });
 
-<<<<<<< HEAD
-// ketika di web
-// {baseUrl}/blog/detail
-=======
 Route::get('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'register']);
->>>>>>> origin/tedy
