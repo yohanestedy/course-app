@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,6 @@ Route::prefix('/blog')->group(function(){
     Route::get('/', [BlogController::class, 'index']);
     Route::get('/show', [BlogController::class, 'show']);
 });
+
+Route::get('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'register']);
