@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// http://url.com/hello-world
+Route::get('/hello-world', [HelloController::class, 'index']);
+
+
+// -- BLOG --
+Route::prefix('/blog')->group(function(){
+    Route::get('/', [BlogController::class, 'index']);
+    Route::get('/show', [BlogController::class, 'show']);
+});
+
+// ketika di web
+// {baseUrl}/blog/detail
