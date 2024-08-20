@@ -1,9 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\AuthController;
->>>>>>> origin/tedy
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
