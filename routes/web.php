@@ -25,8 +25,11 @@ Route::get('/hello-world', [HelloController::class, 'index']);
 // BLOG
 Route::prefix('/blog')->group(function(){
     Route::get('/', [BlogController::class, 'index']);
-    Route::get('/show', [BlogController::class, 'show']);
+    Route::get('/show/{slug}', [BlogController::class, 'show']);
 });
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'register']);
+
+Route::post('/register-new-user', [AuthController::class, 'register_new_user']);
+
