@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.main');
+    return view('pages.master.index');
 });
 
 Route::get('/hello-world', [HelloController::class, 'index']);
