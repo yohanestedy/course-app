@@ -6,7 +6,7 @@
     <title>{{$title}} &mdash; Stisla</title>
 
     {{-- CSS Template --}}
-    @include('include.style')
+    @include('include.auth.style')
 
     <!-- CSS Libraries (Tambahan jika di Butuhkan)-->
     @yield('cssLibraries')
@@ -19,7 +19,7 @@
     </div>
 
     {{-- JS Template --}}
-    @include('include.scripts')
+    @include('include.auth.scripts')
 
     <!-- JS Libraies (Tambahan jika di perlukan) -->
     @yield('jsLibraries')

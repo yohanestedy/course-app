@@ -8,7 +8,7 @@
     {{-- CSS Template --}}
     @include('include.style')
 
-    <!-- CSS Libraries (Tambahan jika di Butuhkan)-->
+    {{-- CSS Libraries (jika di perlukan) --}}
     @yield('cssLibraries')
 
 </head>
