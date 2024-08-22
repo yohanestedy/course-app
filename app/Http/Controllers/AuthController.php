@@ -9,10 +9,10 @@ class AuthController extends Controller
 {
     //
     public function login(){
-        return view('blog.auth.login');
+        return view('pages.auth.login');
     }
     public function register(){
-        return view('blog.auth.register');
+        return view('pages.auth.register');
     }
 
     public function register_new_user(Request $request){
