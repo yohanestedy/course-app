@@ -15,18 +15,18 @@ class AuthController extends Controller
         return view('pages.auth.register');
     }
 
-    public function register_new_user(Request $request){
-        $request = [
-            "email"=> "email@gmail.com",
-            "password" => "rahasia"
-        ];
+    // public function register_new_user(Request $request){
+    //     $request = [
+    //         "email"=> "email@gmail.com",
+    //         "password" => "rahasia"
+    //     ];
 
-        User::create([
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
+    //     User::create([
+    //         'email' => $request->email,
+    //         'password' => $request->password,
+    //     ]);
 
-        return redirect('login');
-    }
+    //     return redirect('login');
+    // }
 
 }
