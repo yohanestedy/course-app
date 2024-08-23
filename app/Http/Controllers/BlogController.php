@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('softui.layout.main');
     }
-    public function show(){
+    public function show()
+    {
         return view('blog.article.post.show');
     }
 }
