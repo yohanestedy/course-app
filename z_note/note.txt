@@ -103,4 +103,33 @@ ROUTE
     - DELETE, biasa digunakan untuk menghapus data
         ex: Route::delete('/user/{id}', [ProfileController::class, 'delete_user']);
 
+
+Day 22
+
+Day 23
+Route Alias
+    - EX : Route::get('user/admin/profile/detail', 'Controller..')->name('users_detail');
+    - EX2 : Route::get('user/abc', 'Controller..')->name('users');
+    - EX2 : Route::get('user/vbabs/asda', 'Controller..')->name('users');
+
+    - EX check on blade
+        #untuk keadaan satu path url
+        @if(Route::is('users_detail') )
+            <nav class="active"/>
+        @endif
+
+        #untuk keadaan banyak path url
+        @if(Route::is('users.*') )
+            <nav class="active"/>
+        @endif
+
+#to do (coba cari tau / baca / tonton)
+1. migration laravel
+2. model laravel
+3. one to one laravel
+4. one to many laravel
+5. primary key laravel
+6. foreign key laravel
+7. query ORM laravel
+
     
