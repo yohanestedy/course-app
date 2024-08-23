@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/hello-world', [HelloController::class, 'index']);
-
+ 
 // BLOG
 Route::prefix('/blog')->group(function(){
     Route::get('/', [BlogController::class, 'index']);

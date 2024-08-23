@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>{{$title}} &mdash; Stisla</title>
+    <title>{{ $title }} &mdash; Stisla</title>
 
     {{-- CSS Template --}}
     @include('include.auth.style')
@@ -25,4 +26,5 @@
     @yield('jsLibraries')
 
 </body>
+
 </html>
