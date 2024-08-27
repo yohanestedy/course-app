@@ -10,8 +10,8 @@
             </div>
             <ul class="sidebar-menu">
                 <li class="menu-header">Dashboard</li>
-                <li><a class="nav-link" href="/"><i class="fas fa-rocket"></i> <span>Dashboard</span></a></li>
-
+                <li><a class="nav-link" href="/"><i class="fas fa-rocket"></i>
+                        <span>Dashboard</span></a></li>
                 <li class="menu-header">Menus</li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dropdown
@@ -39,7 +39,6 @@
                 <li><a class="nav-link" href="#"><i class="fas fa-poop"></i> <span>Menu</span></a></li>
             </ul>
         </div>
-
         <div class="mt-auto mb-4 p-3 hide-sidebar-mini">
             <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> LOGOUT
