@@ -132,4 +132,12 @@ Route Alias
 6. foreign key laravel
 7. query ORM laravel
 
+DAY 26
+1. Migration = Blue Print dari rancangan database
+2. Model = Model dalam Laravel adalah representasi dari tabel database
+    - buat model baru = php artisan make:model NamaModel(Nama Table / Dusun)
+    - 1 table 1 model
+    - didalam model kita bisa mendefine nama tablenya, & melakukan relasi (one to one, hasOne / one to many, hasMany)
+
+
     
