@@ -19,7 +19,7 @@ class Dusun extends Model
 
     // output adalah data dari dusun dan dusun detail akan di keluarkan
 
-    function warga(){
+    function getRelasiWarga(){
         $this->hasMany(Warga::class, 'dusun_id', 'id');
     }
 }
