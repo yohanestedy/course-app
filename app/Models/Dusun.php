@@ -13,13 +13,15 @@ class Dusun extends Model
 
     // case relasi ke DusunDetail (ambil)
     // kita butuh data detail dari dusun, sedangkan table dusun ini hanya pnya id
-    function dusunDetail(){
-        $this->hasOne(DusunDetail::class, 'dusun_id', 'id');
+    function dusunDetail()
+    {
+        return $this->hasOne(DusunDetail::class, 'dusun_id', 'id');
     }
 
     // output adalah data dari dusun dan dusun detail akan di keluarkan
 
-    function getRelasiWarga(){
-        $this->hasMany(Warga::class, 'dusun_id', 'id');
-    }
+    // function getRelasiWarga()
+    // {
+    //     $this->hasMany(Warga::class, 'dusun_id', 'id');
+    // }
 }

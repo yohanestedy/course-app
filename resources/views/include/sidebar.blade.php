@@ -13,7 +13,9 @@
                 <li><a class="nav-link" href="/"><i class="fas fa-rocket"></i>
                         <span>Dashboard</span></a></li>
                 <li class="menu-header">Menus</li>
-                <li class="nav-item dropdown">
+                <li class="{{ Route::is('dusun.index') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('dusun.index') }}"><i class="fas fa-poop"></i> <span>Dusun</span></a></li>
+                {{-- <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dropdown
                             1</span></a>
                     <ul class="dropdown-menu">
@@ -36,7 +38,7 @@
                     </ul>
                 </li>
                 <li><a class="nav-link" href="#"><i class="fas fa-poop"></i> <span>Menu</span></a></li>
-                <li><a class="nav-link" href="#"><i class="fas fa-poop"></i> <span>Menu</span></a></li>
+                <li><a class="nav-link" href="#"><i class="fas fa-poop"></i> <span>Menu</span></a></li> --}}
             </ul>
         </div>
         <div class="mt-auto mb-4 p-3 hide-sidebar-mini">

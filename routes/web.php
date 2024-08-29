@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DusunController;
 use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,10 @@ Route::get('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'register']);
 
 Route::post('/register-new-user', [AuthController::class, 'register_new_user']);
+
+
+//Mini Apps
+Route::prefix('dusun')->group(function () {
+    Route::get('/', [DusunController::class, 'index'])->name('dusun.index');
+    Route::get('/detail', [DusunController::class, 'detail'])->name('dusun.detail');
+});
