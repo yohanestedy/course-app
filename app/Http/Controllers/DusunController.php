@@ -20,9 +20,8 @@ class DusunController extends Controller
 
         return view('pages.master.dusun.index', compact('dusun'));
     }
-    public function detail()
+    public function detail($id)
     {
-
-        return view('pages.master.dusun.detail', compact('detail'));
+        return view('pages.master.dusun.detail');
     }
 }

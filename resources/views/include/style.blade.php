@@ -5,5 +5,5 @@
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 <!-- Template CSS -->
-<link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('/assets/css/components.css') }}">

@@ -38,5 +38,5 @@ Route::post('/register-new-user', [AuthController::class, 'register_new_user']);
 //Mini Apps
 Route::prefix('dusun')->group(function () {
     Route::get('/', [DusunController::class, 'index'])->name('dusun.index');
-    Route::get('/detail', [DusunController::class, 'detail'])->name('dusun.detail');
+    Route::get('/detail/{id}', [DusunController::class, 'detail'])->name('dusun.detail');
 });

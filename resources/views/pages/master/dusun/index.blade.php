@@ -38,7 +38,8 @@
                                             </td>
                                             <td style="width: 20%; text-align: center">
                                                 <a class="btn btn-info btn-action mr-1" data-toggle="tooltip"
-                                                    title="View"><i class="fas fa-eye"></i></a>
+                                                    href="{{ route('dusun.detail', ['id' => $d->id]) }}" title="View"><i
+                                                        class="fas fa-eye"></i></a>
                                                 <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
                                                     title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                                 <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"

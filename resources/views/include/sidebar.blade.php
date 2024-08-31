@@ -13,7 +13,7 @@
                 <li><a class="nav-link" href="/"><i class="fas fa-rocket"></i>
                         <span>Dashboard</span></a></li>
                 <li class="menu-header">Menus</li>
-                <li class="{{ Route::is('dusun.index') ? 'active' : '' }}"><a class="nav-link"
+                <li class="{{ Route::is('dusun.*') ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('dusun.index') }}"><i class="fas fa-poop"></i> <span>Dusun</span></a></li>
                 {{-- <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dropdown
