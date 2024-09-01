@@ -39,4 +39,7 @@ Route::post('/register-new-user', [AuthController::class, 'register_new_user']);
 Route::prefix('dusun')->group(function () {
     Route::get('/', [DusunController::class, 'index'])->name('dusun.index');
     Route::get('/detail/{id}', [DusunController::class, 'detail'])->name('dusun.detail');
+
+    // delete dusun
+    Route::delete('/delete/{id}', [DusunController::class, 'delete'])->name('dusun.delete');
 });

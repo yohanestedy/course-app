@@ -12,7 +12,7 @@ class DusunDetail extends Model
     protected $guarded = []; // merepresentasikan field table yg terlindungi atau tidak boleh di isi
 
     // select dusun_detail where dusun_id = 1
-    function dusunDetail()
+    function dusun()
     {
         $this->hasOne(Dusun::class, 'id', 'dusun_id');
     }

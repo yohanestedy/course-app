@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dusun;
+use App\Models\DusunDetail;
 use Illuminate\Http\Request;
 
 class DusunController extends Controller
 {
-    //index halaman dusun
+    // Halaman Index Dusun
     public function index()
     {
         //1. query (select/get)
@@ -20,8 +21,33 @@ class DusunController extends Controller
 
         return view('pages.master.dusun.index', compact('dusun'));
     }
+
+    // Halaman Detail Dusun
     public function detail($id)
     {
-        return view('pages.master.dusun.detail');
+        // Mengambil data dusun_detail berdasarkan dusun_id
+        $dusunDetail = DusunDetail::where('dusun_id', $id)->first();
+
+
+        // Mengembalikan view dengan data yang diambil menggunakan compact
+        return view('pages.master.dusun.detail', compact('dusunDetail'));
+    }
+
+    // Delete Dusun
+    public function delete($id)
+    {
+        // Mencari dusun berdasarkan ID
+        $dusun = Dusun::find($id);
+
+        if ($dusun) {
+            // Menghapus data dusun
+            $dusun->delete();
+
+            // Mengembalikan respon sukses
+            return response()->json(['message' => 'Dusun berhasil dihapus'], 200);
+        } else {
+            // Mengembalikan respon jika dusun tidak ditemukan
+            return response()->json(['message' => 'Dusun tidak ditemukan'], 404);
+        }
     }
 }
