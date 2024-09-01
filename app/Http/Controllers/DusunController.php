@@ -29,25 +29,37 @@ class DusunController extends Controller
         $dusunDetail = DusunDetail::where('dusun_id', $id)->first();
 
 
+
         // Mengembalikan view dengan data yang diambil menggunakan compact
         return view('pages.master.dusun.detail', compact('dusunDetail'));
     }
 
     // Delete Dusun
+    // public function delete($id)
+    // {
+    //     // Mencari dusun berdasarkan ID
+    //     $dusun = Dusun::find($id);
+
+    //     if ($dusun) {
+    //         // Menghapus data dusun
+    //         $dusun->delete();
+
+    //         // Mengembalikan respon sukses
+    //         return response()->json(['message' => 'Dusun berhasil dihapus'], 200);
+    //     } else {
+    //         // Mengembalikan respon jika dusun tidak ditemukan
+    //         return response()->json(['message' => 'Dusun tidak ditemukan'], 404);
+    //     }
+    // }
+
     public function delete($id)
     {
-        // Mencari dusun berdasarkan ID
-        $dusun = Dusun::find($id);
+        // Hapus semua data terkait di tabel `dusun_detail`
+        DusunDetail::where('dusun_id', $id)->delete();
 
-        if ($dusun) {
-            // Menghapus data dusun
-            $dusun->delete();
+        // Hapus dusun setelah menghapus data terkait
+        Dusun::findOrFail($id)->delete();
 
-            // Mengembalikan respon sukses
-            return response()->json(['message' => 'Dusun berhasil dihapus'], 200);
-        } else {
-            // Mengembalikan respon jika dusun tidak ditemukan
-            return response()->json(['message' => 'Dusun tidak ditemukan'], 404);
-        }
+        return redirect()->route('dusun.index')->with('success', 'Dusun berhasil dihapus.');
     }
 }

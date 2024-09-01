@@ -38,15 +38,20 @@
                                             </td>
                                             <td style="width: 20%; text-align: center">
                                                 <a class="btn btn-info btn-action mr-1" data-toggle="tooltip"
-                                                    href="{{ route('dusun.detail', ['id' => $d->id]) }}" title="View"><i
+                                                    href="{{ route('dusun.detail', ['id' => $d->id]) }}" title="Detail"><i
                                                         class="fas fa-eye"></i></a>
                                                 <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
                                                     title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"
-                                                    data-confirm="Are You Sure?|This action cannot be undone. Do you want to continue?"
-                                                    data-confirm-yes="alert('deleted')">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
+
+                                                {{-- Tombol Delete --}}
+                                                <form action="{{ route('dusun.delete', ['id' => $d->id]) }}"
+                                                    style="display:inline"; method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger btn-action swal-delete"
+                                                        data-toggle="tooltip" title="Hapus"><i
+                                                            class="fas fa-trash"></i></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -58,4 +63,39 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('jsLibraries')
+    <script src="{{ asset('/node_modules/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            // SweetAlert untuk konfirmasi penghapusan
+            $(".swal-delete").click(function(event) {
+                event.preventDefault();
+
+                let form = $(this).closest("form");
+
+                swal({
+                    title: 'Ingin Menghapus File?',
+                    text: 'Setelah dihapus, Anda tidak akan dapat memulihkan file ini!',
+                    icon: 'warning',
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        form.submit(); // Submit form setelah konfirmasi
+                    } else {
+                        swal('File Anda aman!');
+                    }
+                });
+            });
+
+            // SweetAlert untuk notifikasi sukses atau error dari session
+            @if (session()->has('success'))
+                swal('Success', '{{ session('success') }}', 'success');
+            @elseif (session()->has('error'))
+                swal('Error', '{{ session('error') }}', 'error');
+            @endif
+        });
+    </script>
 @endsection
