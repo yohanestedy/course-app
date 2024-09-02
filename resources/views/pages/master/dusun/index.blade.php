@@ -65,6 +65,7 @@
     </section>
 @endsection
 
+
 @section('jsLibraries')
     <script src="{{ asset('/node_modules/sweetalert/dist/sweetalert.min.js') }}"></script>
     <script>

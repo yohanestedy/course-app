@@ -14,7 +14,7 @@ class DusunDetailSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('dusun_detail')->insert([
+        $dusunDetailData = [
             [
                 'dusun_id' => 1,
                 'name' => 'Dusun A',
@@ -95,6 +95,14 @@ class DusunDetailSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
-        ]);
+            // Tambahkan data lainnya seperti yang ada sebelumnya
+        ];
+
+        foreach ($dusunDetailData as $data) {
+            // Cek apakah data sudah ada di tabel dusun_detail berdasarkan dusun_id
+            if (!DB::table('dusun_detail')->where('dusun_id', $data['dusun_id'])->exists()) {
+                DB::table('dusun_detail')->insert($data);
+            }
+        }
     }
 }
