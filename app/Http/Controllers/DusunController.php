@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class DusunController extends Controller
 {
-    // Halaman Index Dusun
+    // Halaman INDEX DUSUN
     public function index()
     {
         //1. query (select/get)
@@ -22,36 +22,22 @@ class DusunController extends Controller
         return view('pages.master.dusun.index', compact('dusun'));
     }
 
-    // Halaman Detail Dusun
+    // DETAIL DUSUN
     public function detail($id)
     {
-        // Mengambil data dusun_detail berdasarkan dusun_id
         $dusunDetail = DusunDetail::where('dusun_id', $id)->first();
 
-
-
-        // Mengembalikan view dengan data yang diambil menggunakan compact
         return view('pages.master.dusun.detail', compact('dusunDetail'));
     }
 
-    // Delete Dusun
-    // public function delete($id)
-    // {
-    //     // Mencari dusun berdasarkan ID
-    //     $dusun = Dusun::find($id);
+    // TAMBAH DUSUN
+    public function add()
+    {
 
-    //     if ($dusun) {
-    //         // Menghapus data dusun
-    //         $dusun->delete();
+        return view('pages.master.dusun.add');
+    }
 
-    //         // Mengembalikan respon sukses
-    //         return response()->json(['message' => 'Dusun berhasil dihapus'], 200);
-    //     } else {
-    //         // Mengembalikan respon jika dusun tidak ditemukan
-    //         return response()->json(['message' => 'Dusun tidak ditemukan'], 404);
-    //     }
-    // }
-
+    // HAPUS DUSUN DAN DUSUN DETAIL
     public function delete($id)
     {
         // Hapus semua data terkait di tabel `dusun_detail`

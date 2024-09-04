@@ -516,6 +516,7 @@ $(function() {
     form.addClass('was-validated');
   });
 
+
   // alert dismissible
   $(".alert-dismissible").each(function() {
     var me = $(this);

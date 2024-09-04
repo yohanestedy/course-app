@@ -11,7 +11,8 @@
                     <div class="card-header">
                         <h4>Daftar Dusun</h4>
                         <div class="card-header-action">
-                            <a class="btn btn-success btn-action" title="Tambah"><i class="fas fa-plus mr-2"></i>Add Dusun</a>
+                            <a class="btn btn-success btn-action" href="{{ route('dusun.add') }}" title="Tambah"><i
+                                    class="fas fa-plus mr-2"></i>Tambah Dusun</a>
                         </div>
                     </div>
                     <div class="card-body p-0">
@@ -28,6 +29,8 @@
                                     @php
                                         $n = 1;
                                     @endphp
+
+
                                     @foreach ($dusun as $d)
                                         <tr>
                                             <td>
