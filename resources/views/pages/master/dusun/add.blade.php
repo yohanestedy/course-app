@@ -16,30 +16,31 @@
 
         <div class="section-body">
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-6">
+                <div class="col-12">
                     <div class="card">
-                        <form class="needs-validation" novalidate="">
+                        <form action="{{ route('dusun.store') }}" method="POST" class="needs-validation" novalidate="">
+                            @csrf
                             <div class="card-header">
                                 <h4>Form Tambah Dusun</h4>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Nama Dusun</label>
-                                    <input type="text" class="form-control" required="">
+                                    <input name="name" type="text" class="form-control" required="">
                                     <div class="invalid-feedback">
                                         Form tidak boleh kosong
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea class="form-control" required="" style="height: 100px;"></textarea>
+                                    <textarea name="description" class="form-control" required="" style="height: 100px;"></textarea>
                                     <div class="invalid-feedback">
                                         Deskripsikan Dusun
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input type="text" class="form-control" required="">
+                                    <input name="foto" type="text" class="form-control" required="">
                                     <div class="invalid-feedback">
                                         Upload Foto Dusun
                                     </div>
@@ -47,7 +48,7 @@
 
                             </div>
                             <div class="card-footer text-right">
-                                <button class="btn btn-primary btn-save">Simpan</button>
+                                <button type="submit" class="btn btn-primary btn-save">Simpan</button>
                             </div>
                         </form>
                     </div>

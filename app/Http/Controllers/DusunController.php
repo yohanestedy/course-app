@@ -30,11 +30,28 @@ class DusunController extends Controller
         return view('pages.master.dusun.detail', compact('dusunDetail'));
     }
 
-    // TAMBAH DUSUN
+    // VIEW TAMBAH DUSUN
     public function add()
     {
 
         return view('pages.master.dusun.add');
+    }
+
+    // TAMBAH DUSUN
+    public function store(Request $request)
+    {
+        // insert to dusun
+        $dusun = Dusun::create([]);
+
+        // insert to dusun_detail
+        DusunDetail::create([
+            "dusun_id" => $dusun->id,
+            "name" => $request->name,
+            "description" => $request->description,
+            "foto" => $request->foto,
+        ]);
+
+        return redirect()->route('dusun.index')->with('success', 'Data berhasil di simpan');
     }
 
     // HAPUS DUSUN DAN DUSUN DETAIL
