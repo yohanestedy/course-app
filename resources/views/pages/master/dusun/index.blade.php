@@ -22,7 +22,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Dusun</th>
-                                        <th style="text-align: center">Action</th>
+                                        <th style="text-align: center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
