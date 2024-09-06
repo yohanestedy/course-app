@@ -40,11 +40,16 @@
                                                 {{ $d->dusunDetail->name }}
                                             </td>
                                             <td style="width: 20%; text-align: center">
+
+                                                {{-- Tombol Edit --}}
                                                 <a class="btn btn-info btn-action mr-1" data-toggle="tooltip"
                                                     href="{{ route('dusun.detail', ['id' => $d->id]) }}" title="Detail"><i
                                                         class="fas fa-eye"></i></a>
+
+                                                {{-- Tombol Edit --}}
                                                 <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
-                                                    title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    href="{{ route('dusun.edit', ['id' => $d->id]) }}" title="Edit"><i
+                                                        class="fas fa-pencil-alt"></i></a>
 
                                                 {{-- Tombol Delete --}}
                                                 <form action="{{ route('dusun.delete', ['id' => $d->id]) }}"

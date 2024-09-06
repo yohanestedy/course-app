@@ -54,6 +54,29 @@ class DusunController extends Controller
         return redirect()->route('dusun.index')->with('success', 'Data berhasil di simpan');
     }
 
+    // VIEW EDIT DUSUN
+    public function edit($id)
+    {
+        $dusunDetail = DusunDetail::where('dusun_id', $id)->first();
+
+        return view('pages.master.dusun.edit', compact('dusunDetail'));
+    }
+
+    // EDIT DUSUN
+    public function update(Request $request, $id)
+    {
+        $dusunDetail = DusunDetail::where('dusun_id', $id)->firstOrFail();
+
+
+        $dusunDetail->name = $request->input('name');
+        $dusunDetail->description = $request->input('description');
+        $dusunDetail->foto = $request->input('foto');
+        $dusunDetail->save();
+        // return $dusunDetail;
+        return redirect()->route('dusun.index')->with('success', 'Data berhasil di update');
+    }
+
+
     // HAPUS DUSUN DAN DUSUN DETAIL
     public function delete($id)
     {

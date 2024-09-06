@@ -41,8 +41,15 @@ Route::post('/register-new-user', [AuthController::class, 'register_new_user']);
 Route::prefix('dusun')->group(function () {
     Route::get('/', [DusunController::class, 'index'])->name('dusun.index');
     Route::get('/detail/{id}', [DusunController::class, 'detail'])->name('dusun.detail');
+
+    // TAMBAH DUSUN
     Route::get('/add', [DusunController::class, 'add'])->name('dusun.add');
     Route::post('/store', [DusunController::class, 'store'])->name('dusun.store');
+
+    // EDIT DUSUN
+    Route::get('/edit/{id}', [DusunController::class, 'edit'])->name('dusun.edit');
+    Route::put('/update/{id}', [DusunController::class, 'update'])->name('dusun.update');
+
 
     // delete dusun
     Route::delete('/delete/{id}', [DusunController::class, 'delete'])->name('dusun.delete');
