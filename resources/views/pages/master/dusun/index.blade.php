@@ -11,8 +11,8 @@
                     <div class="card-header">
                         <h4>Daftar Dusun</h4>
                         <div class="card-header-action">
-                            <a class="btn btn-success btn-action" href="{{ route('dusun.add') }}" title="Tambah"><i
-                                    class="fas fa-plus mr-2"></i>Tambah Dusun</a>
+                            <a class="btn btn-primary btn-action" href="{{ route('dusun.add') }}"><i
+                                    class="fas fa-plus mr-2"></i>Tambah</a>
                         </div>
                     </div>
                     <div class="card-body p-0">
@@ -47,7 +47,7 @@
                                                         class="fas fa-eye"></i></a>
 
                                                 {{-- Tombol Edit --}}
-                                                <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
+                                                <a class="btn btn-success btn-action mr-1" data-toggle="tooltip"
                                                     href="{{ route('dusun.edit', ['id' => $d->id]) }}" title="Edit"><i
                                                         class="fas fa-pencil-alt"></i></a>
 
@@ -58,7 +58,7 @@
                                                     @method('DELETE')
                                                     <button class="btn btn-danger btn-action swal-delete"
                                                         data-toggle="tooltip" title="Hapus"><i
-                                                            class="fas fa-trash"></i></button>
+                                                            class="fas fa-trash-alt"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -85,8 +85,8 @@
                 let form = $(this).closest("form");
 
                 swal({
-                    title: 'Ingin Menghapus File?',
-                    text: 'Setelah dihapus, Anda tidak akan dapat memulihkan file ini!',
+                    title: 'Hapus Data Dusun?',
+                    text: 'Setelah dihapus, Anda tidak dapat memulihkan data ini!',
                     icon: 'warning',
                     buttons: true,
                     dangerMode: true,

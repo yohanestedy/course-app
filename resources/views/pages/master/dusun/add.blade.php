@@ -18,7 +18,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form action="{{ route('dusun.store') }}" method="POST" class="needs-validation" novalidate="">
+                        <form id="form" action="{{ route('dusun.store') }}" method="POST" class="needs-validation"
+                            novalidate="">
                             @csrf
                             <div class="card-header">
                                 <h4>Form Tambah Dusun</h4>
@@ -48,7 +49,7 @@
 
                             </div>
                             <div class="card-footer text-right">
-                                <button type="submit" class="btn btn-primary btn-save">Simpan</button>
+                                <button id="submitBtn" type="submit" class="btn btn-primary btn-save">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -56,4 +57,24 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('jsLibraries')
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function(e) {
+            e.preventDefault(); // Mencegah submit default agar kita bisa menambahkan efek loading
+
+            // Tambahkan kelas 'btn-progress' ke tombol
+            this.classList.add('btn-progress');
+
+            // Nonaktifkan tombol saat loading
+            this.disabled = true;
+
+            // Setelah efek loading, lanjutkan dengan submit form
+            setTimeout(() => {
+                // Kirim form secara manual setelah animasi loading selesai
+                document.getElementById('form').submit();
+            }, 500); // Sesuaikan durasi loading (1 detik di sini)
+        });
+    </script>
 @endsection

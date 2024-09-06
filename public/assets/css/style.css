@@ -797,8 +797,8 @@ select.form-control:not([size]):not([multiple]) {
 }
 .card .card-header h4 + .card-header-action .btn,
 .card .card-header h4 + .card-header-form .btn {
-  font-size: 12px;
-  border-radius: 30px !important;
+  font-size: 14px;
+  border-radius: 5px !important;
   padding-left: 13px !important;
   padding-right: 13px !important;
 }

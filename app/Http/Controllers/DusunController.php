@@ -51,7 +51,7 @@ class DusunController extends Controller
             "foto" => $request->foto,
         ]);
 
-        return redirect()->route('dusun.index')->with('success', 'Data berhasil di simpan');
+        return redirect()->route('dusun.index')->with('success', 'Data Berhasil di Simpan.');
     }
 
     // VIEW EDIT DUSUN
@@ -73,7 +73,7 @@ class DusunController extends Controller
         $dusunDetail->foto = $request->input('foto');
         $dusunDetail->save();
         // return $dusunDetail;
-        return redirect()->route('dusun.index')->with('success', 'Data berhasil di update');
+        return redirect()->route('dusun.index')->with('success', 'Data Berhasil di Update.');
     }
 
 
