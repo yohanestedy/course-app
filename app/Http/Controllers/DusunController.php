@@ -65,13 +65,21 @@ class DusunController extends Controller
     // EDIT DUSUN
     public function update(Request $request, $id)
     {
-        $dusunDetail = DusunDetail::where('dusun_id', $id)->firstOrFail();
+        // $dusunDetail = DusunDetail::where('dusun_id', $id)->firstOrFail();
 
 
-        $dusunDetail->name = $request->input('name');
-        $dusunDetail->description = $request->input('description');
-        $dusunDetail->foto = $request->input('foto');
-        $dusunDetail->save();
+        // $dusunDetail->name = $request->input('name');
+        // $dusunDetail->description = $request->input('description');
+        // $dusunDetail->foto = $request->input('foto');
+        // $dusunDetail->save();
+
+        // Versi Wahyu
+        DusunDetail::where('dusun_id', $id)->update([
+            "name" => $request->name,
+            "description" => $request->description,
+            "foto" => $request->foto,
+        ]);
+
         // return $dusunDetail;
         return redirect()->route('dusun.index')->with('success', 'Data Berhasil di Update.');
     }

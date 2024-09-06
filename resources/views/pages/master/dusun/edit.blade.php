@@ -18,6 +18,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        {{-- ada form lain dgn id yg sama --}}
                         <form id="form" action="{{ route('dusun.update', ['id' => $dusunDetail->dusun_id]) }}"
                             method="POST" class="needs-validation" novalidate="">
                             @csrf
@@ -52,7 +53,7 @@
 
                             </div>
                             <div class="card-footer text-right">
-                                <button id="submitBtn" type="submit" class="btn btn-primary btn-save">Simpan</button>
+                                <button id="submitBtn" type="submit" class="btn btn-primary btn-save submitBtn">Simpan</button>
                             </div>
                         </form>
                     </div>
