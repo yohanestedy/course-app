@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DusunController;
 use App\Http\Controllers\HelloController;
+use App\Http\Controllers\WargaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,4 +54,22 @@ Route::prefix('dusun')->group(function () {
 
     // delete dusun
     Route::delete('/delete/{id}', [DusunController::class, 'delete'])->name('dusun.delete');
+});
+
+Route::prefix('warga')->group(function () {
+    // INDEX WARGA
+    Route::get('/', [WargaController::class, 'index'])->name('warga.index');
+    Route::get('/detail/{id}', [WargaController::class, 'detail'])->name('warga.detail');
+
+    // TAMBAH WARGA
+    Route::get('/add', [WargaController::class, 'add'])->name('warga.add');
+    Route::post('/store', [WargaController::class, 'store'])->name('warga.store');
+
+    // EDIT WARGA
+    Route::get('/edit/{id}', [WargaController::class, 'edit'])->name('warga.edit');
+    Route::put('/update/{id}', [WargaController::class, 'update'])->name('warga.update');
+
+
+    // delete WARGA
+    Route::delete('/delete/{id}', [WargaController::class, 'delete'])->name('warga.delete');
 });

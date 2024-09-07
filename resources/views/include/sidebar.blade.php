@@ -15,6 +15,8 @@
                 <li class="menu-header">Menus</li>
                 <li class="{{ Route::is('dusun.*') ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('dusun.index') }}"><i class="fas fa-poop"></i> <span>Dusun</span></a></li>
+                <li class="{{ Route::is('warga.*') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('warga.index') }}"><i class="fas fa-poop"></i> <span>Warga</span></a></li>
                 {{-- <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dropdown
                             1</span></a>

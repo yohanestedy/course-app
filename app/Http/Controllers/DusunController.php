@@ -18,6 +18,7 @@ class DusunController extends Controller
         //2. mengirim data ke view (compact())
 
         //3. view akan meng consume data
+        // return $dusun;
 
         return view('pages.master.dusun.index', compact('dusun'));
     }
