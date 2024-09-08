@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Dusun;
 use App\Models\DusunDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
+use Log;
 
 class DusunController extends Controller
 {
@@ -41,6 +44,19 @@ class DusunController extends Controller
     // TAMBAH DUSUN
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name'          => 'required',
+            'description'   => 'required',
+            'foto'          => 'required'
+        ]);
+        
+        if ($validator->fails()) {
+            return $validator->errors()->getMessages();
+            return $validator->errors()->first();
+            return redirect()->route('dusun.index')->with('error', $validator->errors()->getMessages());
+            // return redirect()->route('dusun.index')->with('error', $validator->errors()->getMessages());
+        }
+
         // insert to dusun
         $dusun = Dusun::create([]);
 
