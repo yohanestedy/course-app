@@ -11,7 +11,8 @@
                     <div class="card-header">
                         <h4>Daftar Warga</h4>
                         <div class="card-header-action">
-                            <a class="btn btn-primary btn-action" href="#"><i class="fas fa-plus mr-2"></i>Tambah</a>
+                            <a class="btn btn-primary btn-action" href="{{ route('warga.add') }}"><i
+                                    class="fas fa-plus mr-2"></i>Tambah</a>
                         </div>
                     </div>
                     <div class="card-body p-0">
