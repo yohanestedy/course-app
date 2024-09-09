@@ -18,8 +18,9 @@ class WargaController extends Controller
 
     public function add()
     {
-        $dusunDetail = DusunDetail::get();
-        return $dusunDetail;
+        // $dusunDetail = DusunDetail::get();
+        $dusunDetail = DusunDetail::orderBy('dusun_id', 'asc')->get();
+
         return view('pages.master.warga.add', compact('dusunDetail'));
     }
     public function store() {}
