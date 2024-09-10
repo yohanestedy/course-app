@@ -18,9 +18,13 @@ class WargaController extends Controller
 
     public function add()
     {
-        // $dusunDetail = DusunDetail::get();
+        $dusunDetail = DusunDetail::get();
+        // Ordering = untuk mengurutkan data
+        // - asc = Ascending = mengurutkan dari yg pertama ke terakhir
+        // - desc = Descending = kebalikan dari asc
         $dusunDetail = DusunDetail::orderBy('dusun_id', 'asc')->get();
 
+        return $dusunDetail;
         return view('pages.master.warga.add', compact('dusunDetail'));
     }
     public function store() {}
