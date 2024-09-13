@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => 'Tambah Warga'])
+@extends('layouts.main', ['title' => 'Edit Warga'])
 
 @section('mainContent')
     <section class="section">
@@ -7,10 +7,10 @@
                 <a href="{{ route('warga.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
 
             </div>
-            <h1>Tambah Warga</h1>
+            <h1>Edit Warga</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('warga.index') }}">Warga</a></div>
-                <div class="breadcrumb-item">Tambah Warga</div>
+                <div class="breadcrumb-item">Edit Warga</div>
             </div>
         </div>
 
@@ -18,16 +18,18 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form id="form" action="{{ route('warga.store') }}" method="POST" class="needs-validation"
-                            novalidate="">
+                        <form id="form" action="{{ route('warga.update', ['id' => $warga->id]) }}" method="POST"
+                            class="needs-validation" novalidate="">
                             @csrf
+                            @method('PUT')
                             <div class="card-header">
-                                <h4>Form Tambah Warga</h4>
+                                <h4>Form Edit Warga</h4>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Nama Warga</label>
-                                    <input name="name" type="text" class="form-control" required="">
+                                    <input name="name" type="text" class="form-control" value="{{ $warga->name }}"
+                                        required="">
                                     <div class="invalid-feedback">
                                         Form tidak boleh kosong
                                     </div>
@@ -43,15 +45,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input name="foto" type="text" class="form-control" required="">
+                                    <input name="foto" type="text" class="form-control" value="{{ $warga->foto }}"
+                                        required="">
                                     <div class="invalid-feedback">
                                         Upload Foto Warga
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Umur</label>
-                                    <input name="age" type="number" class="form-control" required="" min="0"
-                                        max="120" step="1">
+                                    <input name="age" type="number" class="form-control" value="{{ $warga->age }}"
+                                        required="" min="0" max="120" step="1">
                                     <div class="invalid-feedback">
                                         Upload Foto Warga
                                     </div>
