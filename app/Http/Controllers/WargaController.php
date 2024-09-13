@@ -57,11 +57,11 @@ class WargaController extends Controller
         $dusunDetail = DusunDetail::orderBy('dusun_id', 'asc')->get();
 
         // Rusak
-        // $warga = Warga::find($id)->first();
+        $warga = Warga::find($id);
 
-        $warga = Warga::where('id', $id)->first();
+        // $warga = Warga::where('id', $id)->first();
 
-        return $dusunWarga;
+        // return $dusunWarga;
 
         return view('pages.master.warga.edit', compact('warga', 'dusunDetail', 'dusunWarga'));
     }

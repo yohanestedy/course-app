@@ -6,6 +6,7 @@ use App\Models\Dusun;
 use App\Models\DusunDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Log;
 
@@ -45,16 +46,13 @@ class DusunController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'          => 'required',
+            'name'          => 'required|min:3',
             'description'   => 'required',
             'foto'          => 'required'
         ]);
         
         if ($validator->fails()) {
-            return $validator->errors()->getMessages();
-            return $validator->errors()->first();
-            return redirect()->route('dusun.index')->with('error', $validator->errors()->getMessages());
-            // return redirect()->route('dusun.index')->with('error', $validator->errors()->getMessages());
+            return Redirect::back()->withErrors($validator);
         }
 
         // insert to dusun

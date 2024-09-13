@@ -27,17 +27,27 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Nama Dusun</label>
-                                    <input name="name" type="text" class="form-control" required="">
+                                    <input name="name" type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" required="">
                                     <div class="invalid-feedback">
-                                        Form tidak boleh kosong
+                                        {{$errors->has('name') ? $errors->first('name') : 'Nama Dusun harus diisi'}}
                                     </div>
+                                    {{-- @if($errors->has('name'))
+                                        <div class="error text-danger">
+                                            {{ $errors->first('name') }}
+                                        </div>
+                                    @enderror --}}
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea name="description" class="form-control" required="" style="height: 100px;"></textarea>
+                                    <textarea name="description" class="form-control" style="height: 100px;" required=""></textarea>
                                     <div class="invalid-feedback">
                                         Deskripsikan Dusun
                                     </div>
+                                    @if($errors->has('description'))
+                                        <div class="error text-danger">
+                                            {{ $errors->first('name') }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
@@ -45,6 +55,11 @@
                                     <div class="invalid-feedback">
                                         Upload Foto Dusun
                                     </div>
+                                    @if($errors->has('foto'))
+                                        <div class="error text-danger">
+                                            {{ $errors->first('name') }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                             </div>
@@ -61,15 +76,15 @@
 
 @section('jsLibraries')
     <script>
-        document.getElementById('submitBtn').addEventListener('click', function(e) {
-            e.preventDefault(); // Mencegah submit default agar kita bisa menambahkan efek loading
 
-            // Tambahkan kelas 'btn-progress' ke tombol
-            this.classList.add('btn-progress');
 
-            // Nonaktifkan tombol saat loading
-            this.disabled = true;
-
+            // Setelah efek loading, lanjutkan dengan submit form
+            setTimeout(() => {
+                // Kirim form secara manual setelah animasi loading selesai
+                document.getElementById('form').submit();
+            }, 500); // Sesuaikan durasi loading (1 detik di sini)
+        });
+        
             // Setelah efek loading, lanjutkan dengan submit form
             setTimeout(() => {
                 // Kirim form secara manual setelah animasi loading selesai

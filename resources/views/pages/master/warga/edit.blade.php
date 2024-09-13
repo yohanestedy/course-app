@@ -39,7 +39,15 @@
                                     <select name="dusun" id="dusun" class="form-control" required="">
                                         <option value="">--Pilih Dusun--</option>
                                         @foreach ($dusunDetail as $d)
-                                            <option value="{{ $d->dusun_id }}">{{ $d->name }}</option>
+                                            {{-- jika dusun_detail->dusun_id == warga->dusun_id --}}
+                                                {{-- maka buat selected --}}
+                                                @if ($d->dusun_id == $warga->dusun_id)
+                                                    <option value="{{ $d->dusun_id }}" selected>{{ $d->name }}</option>
+                                                @else
+                                                {{-- else --}}
+                                                    {{-- loopingan biasa --}}
+                                                    <option value="{{ $d->dusun_id }}">{{ $d->name }}</option>
+                                                @endif
                                         @endforeach
                                     </select>
                                 </div>
