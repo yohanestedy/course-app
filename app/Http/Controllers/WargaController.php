@@ -71,19 +71,13 @@ class WargaController extends Controller
     // Update Data Warga
     public function edit($id)
     {
-        $dusunWarga = DusunDetail::where('dusun_id', $id)->first();
-        // $dusunWarga = Warga::find($id)->with('dusunDetail')->first();
 
         $dusunDetail = DusunDetail::orderBy('dusun_id', 'asc')->get();
 
         // Rusak
         $warga = Warga::find($id);
 
-        // $warga = Warga::where('id', $id)->first();
-
-        // return $dusunWarga;
-
-        return view('pages.master.warga.edit', compact('warga', 'dusunDetail', 'dusunWarga'));
+        return view('pages.master.warga.edit', compact('warga', 'dusunDetail'));
     }
 
     public function update(Request $request, $id)

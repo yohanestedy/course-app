@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use App\Models\Dusun;
+use App\Models\Warga;
 use App\Models\DusunDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-use Log;
 
 class DusunController extends Controller
 {
@@ -115,6 +116,14 @@ class DusunController extends Controller
     // HAPUS DUSUN DAN DUSUN DETAIL
     public function delete($id)
     {
+
+        // Cek apakah ada warga yang masih terkait dengan dusun ini
+        $relatedWargaCount = Warga::where('dusun_id', $id)->count();
+
+        if ($relatedWargaCount > 0) {
+            // Jika masih ada warga yang terkait, batalkan penghapusan dan berikan pesan error
+            return redirect()->route('dusun.index')->with('error', 'Tidak boleh menghapus Dusun karena ada data Warga');
+        }
         // Hapus semua data terkait di tabel `dusun_detail`
         DusunDetail::where('dusun_id', $id)->delete();
 
