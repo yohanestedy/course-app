@@ -25,32 +25,26 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
+                                    <br>
                                     <label>Nama Dusun</label>
                                     <input name="name" type="text"
-                                        class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}">
+                                        class="form-control @error('name') is-invalid @enderror">
                                     <div class="invalid-feedback">
-                                        {{ $errors->has('name') ? $errors->first('name') : '' }}
+                                         @error('name') {{ $message }} @enderror
                                     </div>
-                                    {{-- @if ($errors->has('name'))
-                                        <div class="error text-danger">
-                                            {{ $errors->first('name') }}
-                                        </div>
-                                    @enderror --}}
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea name="description" class="form-control" style="height: 100px;"
-                                        {{ $errors->has('description') ? 'is-invalid' : '' }}></textarea>
+                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" style="height: 100px;"></textarea>
                                     <div class="invalid-feedback">
-                                        {{ $errors->has('description') ? $errors->first('description') : '' }}
+                                        @error('description') {{ $message }} @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input name="foto" type="text" class="form-control"
-                                        {{ $errors->has('foto') ? 'is-invalid' : '' }}>
+                                    <input name="foto" type="text" class="form-control @error('foto') is-invalid @enderror">
                                     <div class="invalid-feedback">
-                                        {{ $errors->has('foto') ? $errors->first('foto') : '' }}
+                                        @error('foto') {{ $message }} @enderror
                                     </div>
                                 </div>
 

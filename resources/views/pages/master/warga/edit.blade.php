@@ -46,7 +46,7 @@
                                                 @else
                                                 {{-- else --}}
                                                     {{-- loopingan biasa --}}
-                                                    <option value="{{ $d->dusun_id }}">{{ $d->name }}</option>
+                                                    <option value="{{ $d->dusun_id }}" >{{ $d->name }}</option>
                                                 @endif
                                         @endforeach
                                     </select>

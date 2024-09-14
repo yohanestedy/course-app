@@ -140,4 +140,36 @@ DAY 26
     - didalam model kita bisa mendefine nama tablenya, & melakukan relasi (one to one, hasOne / one to many, hasMany)
 
 
-    
+
+Day 38
+- loop tanpa kondisi
+
+$x = [1, 2, 3, 4]
+
+@foreach ($x as $d)
+    {{ $d }}
+@endfoeach
+
+loop pertama =  1
+                2
+                3
+                4
+
+
+- loop dengan kondisi
+
+$x = [1, 2, 3, 4]
+
+@foreach ($x as $d)
+    @if($d == 2)
+        'data custom'
+    @else
+        {{ $d }}
+    @endif
+@endfoeach
+
+loop pertama =  1
+                'data custom'
+                3
+                4
+
