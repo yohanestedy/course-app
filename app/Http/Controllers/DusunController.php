@@ -49,8 +49,13 @@ class DusunController extends Controller
             'name'          => 'required|min:3',
             'description'   => 'required',
             'foto'          => 'required'
+        ], [
+            'name.required' => 'Nama wajib diisi!',
+            'name.min' => 'Nama tidak boleh kurang dari 3 karakter.',
+            'description.required' => 'Deskripsi wajib diisi!',
+            'foto.required' => 'Umur harus berupa angka.',
         ]);
-        
+
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator);
         }

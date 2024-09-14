@@ -18,8 +18,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form id="form" action="{{ route('dusun.store') }}" method="POST" class="needs-validation"
-                            novalidate="">
+                        <form id="form" action="{{ route('dusun.store') }}" method="POST">
                             @csrf
                             <div class="card-header">
                                 <h4>Form Tambah Dusun</h4>
@@ -27,11 +26,12 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Nama Dusun</label>
-                                    <input name="name" type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" required="">
+                                    <input name="name" type="text"
+                                        class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}">
                                     <div class="invalid-feedback">
-                                        {{$errors->has('name') ? $errors->first('name') : 'Nama Dusun harus diisi'}}
+                                        {{ $errors->has('name') ? $errors->first('name') : '' }}
                                     </div>
-                                    {{-- @if($errors->has('name'))
+                                    {{-- @if ($errors->has('name'))
                                         <div class="error text-danger">
                                             {{ $errors->first('name') }}
                                         </div>
@@ -39,27 +39,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea name="description" class="form-control" style="height: 100px;" required=""></textarea>
+                                    <textarea name="description" class="form-control" style="height: 100px;"
+                                        {{ $errors->has('description') ? 'is-invalid' : '' }}></textarea>
                                     <div class="invalid-feedback">
-                                        Deskripsikan Dusun
+                                        {{ $errors->has('description') ? $errors->first('description') : '' }}
                                     </div>
-                                    @if($errors->has('description'))
-                                        <div class="error text-danger">
-                                            {{ $errors->first('name') }}
-                                        </div>
-                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input name="foto" type="text" class="form-control" required="">
+                                    <input name="foto" type="text" class="form-control"
+                                        {{ $errors->has('foto') ? 'is-invalid' : '' }}>
                                     <div class="invalid-feedback">
-                                        Upload Foto Dusun
+                                        {{ $errors->has('foto') ? $errors->first('foto') : '' }}
                                     </div>
-                                    @if($errors->has('foto'))
-                                        <div class="error text-danger">
-                                            {{ $errors->first('name') }}
-                                        </div>
-                                    @enderror
                                 </div>
 
                             </div>
@@ -76,15 +68,15 @@
 
 @section('jsLibraries')
     <script>
+        document.getElementById('submitBtn').addEventListener('click', function(e) {
+            e.preventDefault(); // Mencegah submit default agar kita bisa menambahkan efek loading
 
+            // Tambahkan kelas 'btn-progress' ke tombol
+            this.classList.add('btn-progress');
 
-            // Setelah efek loading, lanjutkan dengan submit form
-            setTimeout(() => {
-                // Kirim form secara manual setelah animasi loading selesai
-                document.getElementById('form').submit();
-            }, 500); // Sesuaikan durasi loading (1 detik di sini)
-        });
-        
+            // Nonaktifkan tombol saat loading
+            this.disabled = true;
+
             // Setelah efek loading, lanjutkan dengan submit form
             setTimeout(() => {
                 // Kirim form secara manual setelah animasi loading selesai
