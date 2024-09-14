@@ -53,11 +53,11 @@ class DusunController extends Controller
             'name.required' => 'Nama wajib diisi!',
             'name.min' => 'Nama tidak boleh kurang dari 3 karakter.',
             'description.required' => 'Deskripsi wajib diisi!',
-            'foto.required' => 'Umur harus berupa angka.',
+            'foto.required' => 'Upload foto dusun.',
         ]);
 
         if ($validator->fails()) {
-            return Redirect::back()->withErrors($validator);
+            return Redirect::back()->withErrors($validator)->withInput();
         }
 
         // insert to dusun
@@ -85,13 +85,20 @@ class DusunController extends Controller
     // EDIT DUSUN
     public function update(Request $request, $id)
     {
-        // $dusunDetail = DusunDetail::where('dusun_id', $id)->firstOrFail();
+        $validator = Validator::make($request->all(), [
+            'name'          => 'required|min:3',
+            'description'   => 'required',
+            'foto'          => 'required'
+        ], [
+            'name.required' => 'Nama wajib diisi!',
+            'name.min' => 'Nama tidak boleh kurang dari 3 karakter.',
+            'description.required' => 'Deskripsi wajib diisi!',
+            'foto.required' => 'Upload foto dusun.',
+        ]);
 
-
-        // $dusunDetail->name = $request->input('name');
-        // $dusunDetail->description = $request->input('description');
-        // $dusunDetail->foto = $request->input('foto');
-        // $dusunDetail->save();
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
 
         // Versi Wahyu
         DusunDetail::where('dusun_id', $id)->update([

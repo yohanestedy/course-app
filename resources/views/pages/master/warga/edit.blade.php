@@ -18,8 +18,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form id="form" action="{{ route('warga.update', ['id' => $warga->id]) }}" method="POST"
-                            class="needs-validation" novalidate="">
+                        <form id="form" action="{{ route('warga.update', ['id' => $warga->id]) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="card-header">
@@ -28,43 +27,58 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Nama Warga</label>
-                                    <input name="name" type="text" class="form-control" value="{{ $warga->name }}"
-                                        required="">
+                                    <input name="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        value="{{ $warga->name }}">
                                     <div class="invalid-feedback">
-                                        Form tidak boleh kosong
+                                        @error('name')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Dusun</label>
-                                    <select name="dusun" id="dusun" class="form-control" required="">
+                                    <select name="dusun" id="dusun"
+                                        class="form-control @error('dusun') is-invalid @enderror">
                                         <option value="">--Pilih Dusun--</option>
                                         @foreach ($dusunDetail as $d)
                                             {{-- jika dusun_detail->dusun_id == warga->dusun_id --}}
-                                                {{-- maka buat selected --}}
-                                                @if ($d->dusun_id == $warga->dusun_id)
-                                                    <option value="{{ $d->dusun_id }}" selected>{{ $d->name }}</option>
-                                                @else
+                                            {{-- maka buat selected --}}
+                                            @if ($d->dusun_id == $warga->dusun_id)
+                                                <option value="{{ $d->dusun_id }}" selected>{{ $d->name }}</option>
+                                            @else
                                                 {{-- else --}}
-                                                    {{-- loopingan biasa --}}
-                                                    <option value="{{ $d->dusun_id }}" >{{ $d->name }}</option>
-                                                @endif
+                                                {{-- loopingan biasa --}}
+                                                <option value="{{ $d->dusun_id }}">{{ $d->name }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
+                                    <div class="invalid-feedback">
+                                        @error('dusun')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input name="foto" type="text" class="form-control" value="{{ $warga->foto }}"
-                                        required="">
+                                    <input name="foto" type="text"
+                                        class="form-control @error('foto') is-invalid @enderror"
+                                        value="{{ $warga->foto }}">
                                     <div class="invalid-feedback">
-                                        Upload Foto Warga
+                                        @error('foto')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Umur</label>
-                                    <input name="age" type="number" class="form-control" value="{{ $warga->age }}"
-                                        required="" min="0" max="120" step="1">
+                                    <input name="age" type="number"
+                                        class="form-control @error('age') is-invalid @enderror" value="{{ $warga->age }}"
+                                        min="0" max="120" step="1">
                                     <div class="invalid-feedback">
-                                        Upload Foto Warga
+                                        @error('age')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
 

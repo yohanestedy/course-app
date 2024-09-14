@@ -28,23 +28,32 @@
                                     <br>
                                     <label>Nama Dusun</label>
                                     <input name="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror">
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        value="{{ old('name') }}">
                                     <div class="invalid-feedback">
-                                         @error('name') {{ $message }} @enderror
+                                        @error('name')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" style="height: 100px;"></textarea>
+                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" style="height: 100px;">{{ old('description') }}</textarea>
                                     <div class="invalid-feedback">
-                                        @error('description') {{ $message }} @enderror
+                                        @error('description')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input name="foto" type="text" class="form-control @error('foto') is-invalid @enderror">
+                                    <input name="foto" type="text"
+                                        class="form-control @error('foto') is-invalid @enderror"
+                                        value="{{ old('foto') }}">
                                     <div class="invalid-feedback">
-                                        @error('foto') {{ $message }} @enderror
+                                        @error('foto')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
 

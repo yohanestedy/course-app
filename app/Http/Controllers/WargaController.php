@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\DusunDetail;
 use App\Models\Warga;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class WargaController extends Controller
 {
@@ -30,6 +32,24 @@ class WargaController extends Controller
     // Add Warga Store
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3|max:120|regex:/^[a-zA-Z\s]*$/',
+            'dusun' => 'required',
+            'foto' => 'required',
+            'age' => 'required|numeric',
+        ], [
+            'name.required' => 'Nama warga wajib diisi!',
+            'name.min' => 'Nama minimal 3 karakter.',
+            'name.regex' => 'Nama hanya boleh berisi huruf dan spasi.',
+            'dusun.required' => 'Pilih dusun warga',
+            'foto.required' => 'Upload foto warga',
+            'age.required' => 'Umur warga wajib diisi!',
+            'age.numeric' => 'Umur warga harus berupa angka!',
+        ]);
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
         Warga::create([
             "dusun_id" => $request->dusun,
             "name" => $request->name,
@@ -68,6 +88,24 @@ class WargaController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3|max:120|regex:/^[a-zA-Z\s]*$/',
+            'dusun' => 'required',
+            'foto' => 'required',
+            'age' => 'required|numeric',
+        ], [
+            'name.required' => 'Nama warga wajib diisi!',
+            'name.min' => 'Nama minimal 3 karakter.',
+            'name.regex' => 'Nama hanya boleh berisi huruf dan spasi.',
+            'dusun.required' => 'Pilih dusun warga',
+            'foto.required' => 'Upload foto warga',
+            'age.required' => 'Umur warga wajib diisi!',
+            'age.numeric' => 'Umur warga harus berupa angka!',
+        ]);
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
 
         Warga::find($id)->update([
             "dusun_id" => $request->dusun,

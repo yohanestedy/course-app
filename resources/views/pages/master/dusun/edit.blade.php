@@ -20,7 +20,7 @@
                     <div class="card">
                         {{-- ada form lain dgn id yg sama --}}
                         <form id="form" action="{{ route('dusun.update', ['id' => $dusunDetail->dusun_id]) }}"
-                            method="POST" class="needs-validation" novalidate="">
+                            method="POST">
                             @csrf
                             @method('PUT')
                             <div class="card-header">
@@ -29,31 +29,41 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Nama Dusun</label>
-                                    <input name="name" type="text" class="form-control"
+                                    <input name="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror"
                                         value="{{ $dusunDetail->name }}" required="">
                                     <div class="invalid-feedback">
-                                        Form tidak boleh kosong
+                                        @error('name')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea name="description" class="form-control" required="" style="height: 100px;">{{ $dusunDetail->description }}</textarea>
+                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" required=""
+                                        style="height: 100px;">{{ $dusunDetail->description }}</textarea>
                                     <div class="invalid-feedback">
-                                        Deskripsikan Dusun
+                                        @error('description')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input name="foto" type="text" class="form-control"
+                                    <input name="foto" type="text"
+                                        class="form-control @error('foto') is-invalid @enderror"
                                         value="{{ $dusunDetail->foto }}" required="">
                                     <div class="invalid-feedback">
-                                        Upload Foto Dusun
+                                        @error('foto')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
 
                             </div>
                             <div class="card-footer text-right">
-                                <button id="submitBtn" type="submit" class="btn btn-primary btn-save submitBtn">Simpan</button>
+                                <button id="submitBtn" type="submit"
+                                    class="btn btn-primary btn-save submitBtn">Simpan</button>
                             </div>
                         </form>
                     </div>

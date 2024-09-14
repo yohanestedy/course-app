@@ -18,8 +18,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form id="form" action="{{ route('warga.store') }}" method="POST" class="needs-validation"
-                            novalidate="">
+                        <form id="form" action="{{ route('warga.store') }}" method="POST">
                             @csrf
                             <div class="card-header">
                                 <h4>Form Tambah Warga</h4>
@@ -27,33 +26,53 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Nama Warga</label>
-                                    <input name="name" type="text" class="form-control" required="">
+                                    <input name="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        value="{{ old('name') }}">
                                     <div class="invalid-feedback">
-                                        Form tidak boleh kosong
+                                        @error('name')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Dusun</label>
-                                    <select name="dusun" id="dusun" class="form-control" required="">
+                                    <select name="dusun" id="dusun"
+                                        class="form-control @error('dusun') is-invalid @enderror">
                                         <option value="">--Pilih Dusun--</option>
                                         @foreach ($dusunDetail as $d)
-                                            <option value="{{ $d->dusun_id }}">{{ $d->name }}</option>
+                                            <option value="{{ $d->dusun_id }}"
+                                                {{ old('dusun') == $d->dusun_id ? 'selected' : '' }}>{{ $d->name }}
+                                            </option>
                                         @endforeach
                                     </select>
+                                    <div class="invalid-feedback">
+                                        @error('dusun')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input name="foto" type="text" class="form-control" required="">
+                                    <input name="foto" type="text"
+                                        class="form-control @error('foto') is-invalid @enderror"
+                                        value="{{ old('foto') }}">
                                     <div class="invalid-feedback">
-                                        Upload Foto Warga
+                                        @error('foto')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Umur</label>
-                                    <input name="age" type="number" class="form-control" required="" min="0"
-                                        max="120" step="1">
+                                    <input name="age" type="number"
+                                        class="form-control @error('age') is-invalid @enderror" value="{{ old('age') }}"
+                                        min="0" max="120" step="1">
                                     <div class="invalid-feedback">
-                                        Upload Foto Warga
+                                        @error('age')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
 
