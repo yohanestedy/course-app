@@ -83,6 +83,7 @@ class WargaController extends Controller
     public function update(Request $request, $id)
     {
 
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:120|regex:/^[a-zA-Z\s]*$/',
             'dusun' => 'required',

@@ -29,8 +29,7 @@
                                     <label>Nama Warga</label>
                                     <input name="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror"
-                                        {{-- value="{{ old('name') ?? $warga->name }}"> --}}
-                                        value="{{ old('name') != null ? old('name') : $warga->name }}">
+                                        value="{{ old('name') ?? $warga->name }}">
                                     <div class="invalid-feedback">
                                         @error('name')
                                             {{ $message }}
