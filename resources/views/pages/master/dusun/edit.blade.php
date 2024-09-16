@@ -31,7 +31,7 @@
                                     <label>Nama Dusun</label>
                                     <input name="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror"
-                                        value="{{ $dusunDetail->name }}" required="">
+                                        value="{{ old('name') ?? $dusunDetail->name }}">
                                     <div class="invalid-feedback">
                                         @error('name')
                                             {{ $message }}
@@ -40,8 +40,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" required=""
-                                        style="height: 100px;">{{ $dusunDetail->description }}</textarea>
+                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" style="height: 100px;">{{ $dusunDetail->description }}</textarea>
                                     <div class="invalid-feedback">
                                         @error('description')
                                             {{ $message }}
@@ -52,7 +51,7 @@
                                     <label>Foto</label>
                                     <input name="foto" type="text"
                                         class="form-control @error('foto') is-invalid @enderror"
-                                        value="{{ $dusunDetail->foto }}" required="">
+                                        value="{{ $dusunDetail->foto }}">
                                     <div class="invalid-feedback">
                                         @error('foto')
                                             {{ $message }}
