@@ -173,3 +173,28 @@ loop pertama =  1
                 3
                 4
 
+error handling = digunakan untuk menangani error yang terjadi pada sebuat function, umumnya digunakan untuk function yang (error yg tidak terduga)
+- mempunyai logic yg kompleks,
+- menangani aktivitas data ke database lebih dari 1 query
+ contoh : get, post, put, delete
+ poin ini juga bisa di kobinasi dengan: 
+ pemanfaatan DB transaction pada funtion yang menangani aktivitas database lebih dari 1 query
+ contoh : post, put, delete
+ karena fungsi DB Transaction ini adalah untuk melakukan rollback/undo perubahan apabila salah satu dari query post, put, delete terjadi error
+
+ contoh sintaks error handling: 
+ try{
+
+ }catch(\Throwable $th){
+
+ }
+
+ 
+ contoh sintaks error handling dengan db transaction: 
+ DB::beginTransaction();
+ try{
+
+ DB::commit();
+ }catch(\Throwable $th){
+ DB::rollBack();
+ }

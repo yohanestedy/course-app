@@ -8,6 +8,7 @@ use App\Models\Warga;
 use App\Models\DusunDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -115,21 +116,48 @@ class DusunController extends Controller
 
     // HAPUS DUSUN DAN DUSUN DETAIL
     public function delete($id)
-    {
+    {   
+        DB::beginTransaction();
+        try {
+            // Cek apakah ada warga yang masih terkait dengan dusun ini
+            // $relatedWargaCount = Warga::where('dusun_id', $id)->count();
 
-        // Cek apakah ada warga yang masih terkait dengan dusun ini
-        $relatedWargaCount = Warga::where('dusun_id', $id)->count();
+            // if ($relatedWargaCount > 0) {
+            //     // Jika masih ada warga yang terkait, batalkan penghapusan dan berikan pesan error
+            //     return redirect()->route('dusun.index')->with('error', 'Tidak boleh menghapus Dusun karena ada data Warga');
+            // }
+            // Hapus semua data terkait di tabel `dusun_detail`
+            DusunDetail::where('dusun_id', $id)->delete();
 
-        if ($relatedWargaCount > 0) {
-            // Jika masih ada warga yang terkait, batalkan penghapusan dan berikan pesan error
-            return redirect()->route('dusun.index')->with('error', 'Tidak boleh menghapus Dusun karena ada data Warga');
+            // Hapus dusun setelah menghapus data terkait
+            Dusun::findOrFail($id)->delete();
+            
+            // // === CONTOH PENANGANAN PADA LOGIC YG KOMPLEKS ===
+            // // aktifitas get ip address, get country, get range distance (km) dari server
+            // $result = $this->startActivity();
+            // // Store data ke Log Master
+            // Log::create([
+            //     'value' => $result
+            // ]);
+            // // === END ===
+
+            DB::commit();
+            return redirect()->route('dusun.index')->with('success', 'Dusun berhasil dihapus.');
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->route('dusun.index')->with('error', "Gagal menghapus data. Error: ".$th->getMessage());
         }
-        // Hapus semua data terkait di tabel `dusun_detail`
-        DusunDetail::where('dusun_id', $id)->delete();
+    }
 
-        // Hapus dusun setelah menghapus data terkait
-        Dusun::findOrFail($id)->delete();
+    function startActivity(){
+        try{
+            // disini ada code yg melakukan aktifitas get ip address, get country, get range distance (km) dari server
 
-        return redirect()->route('dusun.index')->with('success', 'Dusun berhasil dihapus.');
+            $distance = 100;
+            return $distance;
+        }catch(\Throwable $th){
+            return 0;
+        }
     }
 }
