@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => 'Tambah Warga'])
+@extends ('layouts.main', ['title' => 'Tambah Warga'])
 
 @section('mainContent')
     <section class="section">

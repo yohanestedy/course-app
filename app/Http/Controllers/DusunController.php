@@ -116,22 +116,22 @@ class DusunController extends Controller
 
     // HAPUS DUSUN DAN DUSUN DETAIL
     public function delete($id)
-    {   
+    {
         DB::beginTransaction();
         try {
             // Cek apakah ada warga yang masih terkait dengan dusun ini
-            // $relatedWargaCount = Warga::where('dusun_id', $id)->count();
+            $relatedWargaCount = Warga::where('dusun_id', $id)->count();
 
-            // if ($relatedWargaCount > 0) {
-            //     // Jika masih ada warga yang terkait, batalkan penghapusan dan berikan pesan error
-            //     return redirect()->route('dusun.index')->with('error', 'Tidak boleh menghapus Dusun karena ada data Warga');
-            // }
+            if ($relatedWargaCount > 0) {
+                // Jika masih ada warga yang terkait, batalkan penghapusan dan berikan pesan error
+                return redirect()->route('dusun.index')->with('error', 'Tidak boleh menghapus Dusun karena ada data Warga');
+            }
             // Hapus semua data terkait di tabel `dusun_detail`
             DusunDetail::where('dusun_id', $id)->delete();
 
             // Hapus dusun setelah menghapus data terkait
             Dusun::findOrFail($id)->delete();
-            
+
             // // === CONTOH PENANGANAN PADA LOGIC YG KOMPLEKS ===
             // // aktifitas get ip address, get country, get range distance (km) dari server
             // $result = $this->startActivity();
@@ -143,20 +143,20 @@ class DusunController extends Controller
 
             DB::commit();
             return redirect()->route('dusun.index')->with('success', 'Dusun berhasil dihapus.');
-
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->route('dusun.index')->with('error', "Gagal menghapus data. Error: ".$th->getMessage());
+            return redirect()->route('dusun.index')->with('error', "Gagal menghapus data. Error: " . $th->getMessage());
         }
     }
 
-    function startActivity(){
-        try{
+    function startActivity()
+    {
+        try {
             // disini ada code yg melakukan aktifitas get ip address, get country, get range distance (km) dari server
 
             $distance = 100;
             return $distance;
-        }catch(\Throwable $th){
+        } catch (\Throwable $th) {
             return 0;
         }
     }

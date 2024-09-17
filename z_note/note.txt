@@ -46,12 +46,12 @@ Note Day17
         - app/Http/Controllers
         - php artisan make:controller HelloController = Command laravel untuk membuat controller
         - bikin/siapin function di HelloController nya untuk ke route (ex: index())
-        - setelah dari routes/web.php buat return 
+        - setelah dari routes/web.php buat return
             - return view('hello.index');
 
     2. Routing
         - routes/web.php
-        - buat routingan 
+        - buat routingan
             - buat routing jika ada yang mengakses misal baseurl/hello-world
             - Route::get('/hello-world', [HelloController::class, 'index']);
             - pastikan ada use App\Http\Controllers\HelloController;
@@ -66,29 +66,29 @@ Note Day17
             - index.blade.php
             - isi dengan html contoh
 
-Day18 
+Day18
 
 Day19
     1. @yield('mainComponen') = Patokan atau tempat penampung untuk component yang akan di implementasi
     2. @section('mainComponent') = sebagai component yang akan di implementasikan  pada main base template
-    3. @extend('alamat base layout/template') = sebagai import base template 
+    3. @extend('alamat base layout/template') = sebagai import base template
         - @extend('blog.layout.main')
 
 Day20
 GIT
-- git fetch origin tedy 
+- git fetch origin tedy
 - git merge origin tedy
 
 - git pull origin tedy
 
 = git pull = digunakan untuk mengambil commitan terbaru (update)
-= git fetch & merge = digunakan untuk mengambil commitan terbaru (update), tapi udah sepaket. 
-- fetch, command untuk mengunduh konten dari repositori remote 
+= git fetch & merge = digunakan untuk mengambil commitan terbaru (update), tapi udah sepaket.
+- fetch, command untuk mengunduh konten dari repositori remote
 - merge, menggabungkan perubahan tersebut ke dalam cabang saat ini di repositori lokal.
 
 Day21
 ROUTE
-- route digunakan untuk sebagai alamat(routingan) 
+- route digunakan untuk sebagai alamat(routingan)
 - Method
     - GET, biasa digunakan untuk mengambil data atau alamat route untuk view
         ex: Route::get('/login', [AuthController::class, 'login']);
@@ -177,20 +177,20 @@ error handling = digunakan untuk menangani error yang terjadi pada sebuat functi
 - mempunyai logic yg kompleks,
 - menangani aktivitas data ke database lebih dari 1 query
  contoh : get, post, put, delete
- poin ini juga bisa di kobinasi dengan: 
+ poin ini juga bisa di kobinasi dengan:
  pemanfaatan DB transaction pada funtion yang menangani aktivitas database lebih dari 1 query
  contoh : post, put, delete
  karena fungsi DB Transaction ini adalah untuk melakukan rollback/undo perubahan apabila salah satu dari query post, put, delete terjadi error
 
- contoh sintaks error handling: 
+ contoh sintaks error handling:
  try{
 
  }catch(\Throwable $th){
 
  }
 
- 
- contoh sintaks error handling dengan db transaction: 
+
+ contoh sintaks error handling dengan db transaction:
  DB::beginTransaction();
  try{
 
