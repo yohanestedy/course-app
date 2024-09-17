@@ -198,3 +198,20 @@ error handling = digunakan untuk menangani error yang terjadi pada sebuat functi
  }catch(\Throwable $th){
  DB::rollBack();
  }
+
+
+ Day 41 Uplaoding file
+ opsi tempat menyimpan file:
+ - local = server langsung / didalam project
+    pastikan pada saat membuat fitur ini kita harus menyeting symlink, agar file dapat di akses dari browser (public)
+
+ - cloud = aws, cloudinary, google cloude asset
+
+ pada saat kita simpan file, yg tersimpan di DB hanya file namenya saja / route dan file name, sedangkan file aslinya itu berada di storege local / cloud
+
+ STEP
+ - tambhain enctype="multipart/form-data" pada form
+ - ganti type input ke "file"
+ - persiapkan function pada controller
+  1. buat kondisi ada upload file atau tidak
+  2. jika ada file maka lakukan manipulasi file name dan simpan ke local server

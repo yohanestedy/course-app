@@ -62,6 +62,20 @@ class DusunController extends Controller
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
+        // cek dulu ada upload file ngga? jika ada kita harus lakukan manipulasi untuk mendapatkan file name dan juga store ke server
+        if($request->hasFile('foto')){
+
+            $filenameWithExt = $request->file('foto')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            
+            $filenameSimpan = $filename.'_'.time().'.'.$extension; 
+
+            $path = $request->file('foto')->storeAs('public/dusun', $filenameSimpan);
+
+            dd($path);
+        }
+
         // insert to dusun
         $dusun = Dusun::create([]);
 
@@ -70,7 +84,7 @@ class DusunController extends Controller
             "dusun_id" => $dusun->id,
             "name" => $request->name,
             "description" => $request->description,
-            "foto" => $request->foto,
+            // "foto" => $filenameSimpan,
         ]);
 
         return redirect()->route('dusun.index')->with('success', 'Data Berhasil di Simpan.');

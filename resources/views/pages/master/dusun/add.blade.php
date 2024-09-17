@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form id="form" action="{{ route('dusun.store') }}" method="POST">
+                        <form id="form" action="{{ route('dusun.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-header">
                                 <h4>Form Tambah Dusun</h4>
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input name="foto" type="text"
+                                    <input name="foto" type="file"
                                         class="form-control @error('foto') is-invalid @enderror"
                                         value="{{ old('foto') }}">
                                     <div class="invalid-feedback">
