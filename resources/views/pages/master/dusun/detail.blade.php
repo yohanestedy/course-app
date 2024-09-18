@@ -22,6 +22,7 @@
                             <h4>Deskripsi Dusun</h4>
                         </div>
                         <div class="card-body">
+                            <img src="{{asset('storage/dusun/'.$dusunDetail->foto)}}" width="100%">
                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam molestias consequatur
                                 repudiandae impedit in dolor fuga doloremque recusandae quidem sequi nobis quibusdam,
                                 nulla

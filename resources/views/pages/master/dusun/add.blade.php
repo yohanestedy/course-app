@@ -49,7 +49,7 @@
                                     <label>Foto</label>
                                     <input name="foto" type="file"
                                         class="form-control @error('foto') is-invalid @enderror"
-                                        value="{{ old('foto') }}">
+                                        value="{{ old('foto') }}" accept="image/png, image/jpeg, image/jpg, application/pdf">
                                     <div class="invalid-feedback">
                                         @error('foto')
                                             {{ $message }}

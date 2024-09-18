@@ -215,3 +215,9 @@ error handling = digunakan untuk menangani error yang terjadi pada sebuat functi
  - persiapkan function pada controller
   1. buat kondisi ada upload file atau tidak
   2. jika ada file maka lakukan manipulasi file name dan simpan ke local server
+
+
+  Day 42
+  - menyimpan file name ke database
+  - validasi file
+  - panggil file yg disimpan ke view / detail halaman

@@ -50,12 +50,13 @@ class DusunController extends Controller
         $validator = Validator::make($request->all(), [
             'name'          => 'required|min:3',
             'description'   => 'required',
-            'foto'          => 'required'
+            'foto'          => 'mimes:jpg,jpeg,png|max:48'
         ], [
             'name.required' => 'Nama wajib diisi!',
             'name.min' => 'Nama tidak boleh kurang dari 3 karakter.',
             'description.required' => 'Deskripsi wajib diisi!',
-            'foto.required' => 'Upload foto dusun.',
+            'foto.mimes' => 'Fotmat file tidak sesuai, hanya boleh jpg,jpeg,png.',
+            'foto.max' => 'max 48kb',
         ]);
 
         if ($validator->fails()) {
@@ -70,10 +71,11 @@ class DusunController extends Controller
             $extension = $request->file('foto')->getClientOriginalExtension();
             
             $filenameSimpan = $filename.'_'.time().'.'.$extension; 
-
+            
             $path = $request->file('foto')->storeAs('public/dusun', $filenameSimpan);
 
-            dd($path);
+        }else{ // setup default foto
+            $filenameSimpan = 'default_image.jpg';
         }
 
         // insert to dusun
@@ -84,7 +86,7 @@ class DusunController extends Controller
             "dusun_id" => $dusun->id,
             "name" => $request->name,
             "description" => $request->description,
-            // "foto" => $filenameSimpan,
+            "foto" => $filenameSimpan,
         ]);
 
         return redirect()->route('dusun.index')->with('success', 'Data Berhasil di Simpan.');
