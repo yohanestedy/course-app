@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class DusunController extends Controller
@@ -105,23 +106,47 @@ class DusunController extends Controller
         $validator = Validator::make($request->all(), [
             'name'          => 'required|min:3',
             'description'   => 'required',
-            'foto'          => 'required'
+            'foto'          => 'mimes:jpg,jpeg,png|max:2048'
         ], [
             'name.required' => 'Nama wajib diisi!',
             'name.min' => 'Nama tidak boleh kurang dari 3 karakter.',
             'description.required' => 'Deskripsi wajib diisi!',
-            'foto.required' => 'Upload foto dusun.',
+            'foto.mimes' => 'Format foto yang diperbolehkan hanya jpg, jpeg, atau png.',
+            'foto.max' => 'Ukuran file maksimal 2MB.',
         ]);
 
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
+
+        $dusun = DusunDetail::where('dusun_id', $id)->first();
+        
+        // apakah ada data file yg di upload?
+        if ($request->hasFile('foto')) {
+            // hapus foto lama yg bukan default img
+            if($dusun->foto != 'default_image.jpg'){
+                Storage::delete('public/dusun'. $dusun->foto);
+            }
+
+            // upload new image
+            $filenameWithExt = $request->file('foto')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('foto')->getClientOriginalExtension();
+
+            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+
+            $path = $request->file('foto')->storeAs('public/dusun', $filenameSimpan);
+        }else{
+            $filenameSimpan = $dusun->foto;
+        }
+        
+        
         // Versi Wahyu
         DusunDetail::where('dusun_id', $id)->update([
             "name" => $request->name,
             "description" => $request->description,
-            "foto" => $request->foto,
+            "foto" => $filenameSimpan,
         ]);
 
         // return $dusunDetail;
@@ -146,15 +171,6 @@ class DusunController extends Controller
 
             // Hapus dusun setelah menghapus data terkait
             Dusun::findOrFail($id)->delete();
-
-            // // === CONTOH PENANGANAN PADA LOGIC YG KOMPLEKS ===
-            // // aktifitas get ip address, get country, get range distance (km) dari server
-            // $result = $this->startActivity();
-            // // Store data ke Log Master
-            // Log::create([
-            //     'value' => $result
-            // ]);
-            // // === END ===
 
             DB::commit();
             return redirect()->route('dusun.index')->with('success', 'Dusun berhasil dihapus.');

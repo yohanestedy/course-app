@@ -20,7 +20,7 @@
                     <div class="card">
                         {{-- ada form lain dgn id yg sama --}}
                         <form id="form" action="{{ route('dusun.update', ['id' => $dusunDetail->dusun_id]) }}"
-                            method="POST">
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card-header">
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input name="foto" type="text"
+                                    <input name="foto" type="file"
                                         class="form-control @error('foto') is-invalid @enderror"
                                         value="{{ $dusunDetail->foto }}">
                                     <div class="invalid-feedback">
@@ -58,6 +58,7 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <img src="{{asset('storage/dusun/' . $dusunDetail->foto)}}" width="25%">
 
                             </div>
                             <div class="card-footer text-right">
