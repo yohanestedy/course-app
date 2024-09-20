@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DusunDetail;
 use App\Models\Warga;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -24,7 +25,13 @@ class WargaController extends Controller
 
         $warga = Warga::with('dusunDetail')->find($id);
 
-        return view('pages.master.warga.detail', compact('warga'));
+        // Menghitung umur berdasarkan tanggal lahir
+        $tgl_lahir = $warga->tgl_lahir;
+        $umur = Carbon::parse($tgl_lahir)->age;
+
+        // dd($warga->tgl_lahir);
+
+        return view('pages.master.warga.detail', compact('warga', 'umur'));
     }
 
     // Add Warga
@@ -45,7 +52,7 @@ class WargaController extends Controller
             'name' => 'required|min:3|max:120|regex:/^[a-zA-Z\s]*$/',
             'dusun' => 'required',
             'foto' => 'mimes:jpg,jpeg,png|max:2048',
-            'age' => 'required|numeric',
+            'tgl_lahir' => 'required',
         ], [
             'name.required' => 'Nama warga wajib diisi!',
             'name.min' => 'Nama minimal 3 karakter.',
@@ -53,8 +60,7 @@ class WargaController extends Controller
             'dusun.required' => 'Pilih dusun warga',
             'foto.mimes' => 'Format foto yang diperbolehkan hanya jpg, jpeg, atau png.',
             'foto.max' => 'Ukuran file maksimal 2MB.',
-            'age.required' => 'Umur warga wajib diisi!',
-            'age.numeric' => 'Umur warga harus berupa angka!',
+            'tgl_lahir.required' => 'Tanggal lahir warga wajib diisi!',
         ]);
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput();
@@ -77,7 +83,7 @@ class WargaController extends Controller
             "dusun_id" => $request->dusun,
             "name" => $request->name,
             "foto" => $filenameSimpan,
-            "age" => $request->age,
+            "tgl_lahir" => $request->tgl_lahir,
         ]);
 
         return redirect()->route('warga.index')->with('success', 'Data warga berhasil di simpan.');

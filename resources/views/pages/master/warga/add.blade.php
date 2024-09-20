@@ -66,12 +66,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Umur</label>
-                                    <input name="age" type="number"
-                                        class="form-control @error('age') is-invalid @enderror" value="{{ old('age') }}"
-                                        min="0" max="120" step="1">
+                                    <label>Tanggal Lahir</label>
+                                    <input name="tgl_lahir" type="date"
+                                        class="form-control @error('age') is-invalid @enderror"
+                                        value="{{ old('tgl_lahir') }}">
                                     <div class="invalid-feedback">
-                                        @error('age')
+                                        @error('tgl_lahir')
                                             {{ $message }}
                                         @enderror
                                     </div>

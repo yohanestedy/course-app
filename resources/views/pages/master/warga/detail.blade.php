@@ -23,10 +23,8 @@
                         </div>
                         <div class="card-body">
                             <img src="{{ asset('storage/warga/' . $warga->foto) }}" width="25%">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam molestias consequatur
-                                repudiandae impedit in dolor fuga doloremque recusandae quidem sequi nobis quibusdam,
-                                nulla
-                                vel nemo quam eaque, perspiciatis, aspernatur cupiditate.</p>
+                            <p>Nama: {{ $warga->name }}</p>
+                            <p>Umur: {{ $umur }} tahun</p>
                         </div>
                     </div>
                 </div>
