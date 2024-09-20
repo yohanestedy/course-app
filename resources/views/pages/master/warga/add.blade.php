@@ -18,7 +18,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form id="form" action="{{ route('warga.store') }}" method="POST">
+                        <form id="form" action="{{ route('warga.store') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="card-header">
                                 <h4>Form Tambah Warga</h4>
@@ -55,9 +56,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input name="foto" type="text"
+                                    <input name="foto" type="file"
                                         class="form-control @error('foto') is-invalid @enderror"
-                                        value="{{ old('foto') }}">
+                                        accept="image/png, image/jpeg, image/jpg" value="{{ old('foto') }}">
                                     <div class="invalid-feedback">
                                         @error('foto')
                                             {{ $message }}

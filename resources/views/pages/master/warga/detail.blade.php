@@ -1,15 +1,15 @@
-@extends('layouts.main', ['title' => 'Detail Dusun'])
+@extends('layouts.main', ['title' => 'Detail Warga'])
 
 @section('mainContent')
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ route('dusun.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('warga.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Detail Dusun {{ $dusunDetail->name }}</h1>
+            <h1>Detail Warga</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ route('dusun.index') }}">Dusun</a></div>
-                <div class="breadcrumb-item">Detail Dusun {{ $dusunDetail->name }}</div>
+                <div class="breadcrumb-item active"><a href="{{ route('warga.index') }}">Warga</a></div>
+                <div class="breadcrumb-item">Detail Warga</div>
             </div>
         </div>
 
@@ -19,10 +19,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Deskripsi Dusun</h4>
+                            <h4>Deskripsi Warga</h4>
                         </div>
                         <div class="card-body">
-                            <img src="{{ asset('storage/dusun/' . $dusunDetail->foto) }}" width="25%">
+                            <img src="{{ asset('storage/warga/' . $warga->foto) }}" width="25%">
                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam molestias consequatur
                                 repudiandae impedit in dolor fuga doloremque recusandae quidem sequi nobis quibusdam,
                                 nulla

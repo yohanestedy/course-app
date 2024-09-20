@@ -18,6 +18,15 @@ class WargaController extends Controller
         return view('pages.master.warga.index', compact('warga'));
     }
 
+    // Detail Warga
+    public function detail($id)
+    {
+
+        $warga = Warga::with('dusunDetail')->find($id);
+
+        return view('pages.master.warga.detail', compact('warga'));
+    }
+
     // Add Warga
     public function add()
     {
@@ -35,14 +44,15 @@ class WargaController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:120|regex:/^[a-zA-Z\s]*$/',
             'dusun' => 'required',
-            'foto' => 'required',
+            'foto' => 'mimes:jpg,jpeg,png|max:2048',
             'age' => 'required|numeric',
         ], [
             'name.required' => 'Nama warga wajib diisi!',
             'name.min' => 'Nama minimal 3 karakter.',
             'name.regex' => 'Nama hanya boleh berisi huruf dan spasi.',
             'dusun.required' => 'Pilih dusun warga',
-            'foto.required' => 'Upload foto warga',
+            'foto.mimes' => 'Format foto yang diperbolehkan hanya jpg, jpeg, atau png.',
+            'foto.max' => 'Ukuran file maksimal 2MB.',
             'age.required' => 'Umur warga wajib diisi!',
             'age.numeric' => 'Umur warga harus berupa angka!',
         ]);
@@ -50,10 +60,23 @@ class WargaController extends Controller
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
+        if ($request->hasFile('foto')) {
+
+            $filenameWithExt = $request->file('foto')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+
+            $path = $request->file('foto')->storeAs('public/warga', $filenameSimpan);
+        }
+
+
+
         Warga::create([
             "dusun_id" => $request->dusun,
             "name" => $request->name,
-            "foto" => $request->foto,
+            "foto" => $filenameSimpan,
             "age" => $request->age,
         ]);
 

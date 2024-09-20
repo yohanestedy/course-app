@@ -50,13 +50,13 @@ class DusunController extends Controller
         $validator = Validator::make($request->all(), [
             'name'          => 'required|min:3',
             'description'   => 'required',
-            'foto'          => 'mimes:jpg,jpeg,png|max:48'
+            'foto'          => 'mimes:jpg,jpeg,png|max:2048'
         ], [
             'name.required' => 'Nama wajib diisi!',
             'name.min' => 'Nama tidak boleh kurang dari 3 karakter.',
             'description.required' => 'Deskripsi wajib diisi!',
-            'foto.mimes' => 'Fotmat file tidak sesuai, hanya boleh jpg,jpeg,png.',
-            'foto.max' => 'max 48kb',
+            'foto.mimes' => 'Format foto yang diperbolehkan hanya jpg, jpeg, atau png.',
+            'foto.max' => 'Ukuran file maksimal 2MB.',
         ]);
 
         if ($validator->fails()) {
@@ -64,17 +64,16 @@ class DusunController extends Controller
         }
 
         // cek dulu ada upload file ngga? jika ada kita harus lakukan manipulasi untuk mendapatkan file name dan juga store ke server
-        if($request->hasFile('foto')){
+        if ($request->hasFile('foto')) {
 
             $filenameWithExt = $request->file('foto')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('foto')->getClientOriginalExtension();
-            
-            $filenameSimpan = $filename.'_'.time().'.'.$extension; 
-            
-            $path = $request->file('foto')->storeAs('public/dusun', $filenameSimpan);
 
-        }else{ // setup default foto
+            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+
+            $path = $request->file('foto')->storeAs('public/dusun', $filenameSimpan);
+        } else { // setup default foto
             $filenameSimpan = 'default_image.jpg';
         }
 

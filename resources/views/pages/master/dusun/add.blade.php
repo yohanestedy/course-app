@@ -18,7 +18,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form id="form" action="{{ route('dusun.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="form" action="{{ route('dusun.store') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="card-header">
                                 <h4>Form Tambah Dusun</h4>
@@ -48,8 +49,8 @@
                                 <div class="form-group">
                                     <label>Foto</label>
                                     <input name="foto" type="file"
-                                        class="form-control @error('foto') is-invalid @enderror"
-                                        value="{{ old('foto') }}" accept="image/png, image/jpeg, image/jpg, application/pdf">
+                                        class="form-control @error('foto') is-invalid @enderror" value="{{ old('foto') }}"
+                                        accept="image/png, image/jpeg, image/jpg">
                                     <div class="invalid-feedback">
                                         @error('foto')
                                             {{ $message }}
