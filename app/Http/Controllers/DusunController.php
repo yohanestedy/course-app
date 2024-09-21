@@ -126,7 +126,7 @@ class DusunController extends Controller
         if ($request->hasFile('foto')) {
             // hapus foto lama yg bukan default img
             if ($dusun->foto != 'default_image.jpg') {
-                Storage::delete('public/dusun' . $dusun->foto);
+                Storage::delete('public/dusun/' . $dusun->foto);
             }
 
             // upload new image
@@ -170,7 +170,7 @@ class DusunController extends Controller
             // Hapus foto dari server
             $dusun = DusunDetail::where('dusun_id', $id)->first();
             if ($dusun->foto != 'default_image.jpg') {
-                Storage::delete('public/dusun' . $dusun->foto);
+                Storage::delete('public/dusun/' . $dusun->foto);
             }
 
             // Hapus semua data terkait di tabel `dusun_detail`
