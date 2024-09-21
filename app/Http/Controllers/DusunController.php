@@ -121,12 +121,12 @@ class DusunController extends Controller
 
 
         $dusun = DusunDetail::where('dusun_id', $id)->first();
-        
+
         // apakah ada data file yg di upload?
         if ($request->hasFile('foto')) {
             // hapus foto lama yg bukan default img
-            if($dusun->foto != 'default_image.jpg'){
-                Storage::delete('public/dusun'. $dusun->foto);
+            if ($dusun->foto != 'default_image.jpg') {
+                Storage::delete('public/dusun' . $dusun->foto);
             }
 
             // upload new image
@@ -137,11 +137,11 @@ class DusunController extends Controller
             $filenameSimpan = $filename . '_' . time() . '.' . $extension;
 
             $path = $request->file('foto')->storeAs('public/dusun', $filenameSimpan);
-        }else{
+        } else {
             $filenameSimpan = $dusun->foto;
         }
-        
-        
+
+
         // Versi Wahyu
         DusunDetail::where('dusun_id', $id)->update([
             "name" => $request->name,
@@ -166,6 +166,13 @@ class DusunController extends Controller
                 // Jika masih ada warga yang terkait, batalkan penghapusan dan berikan pesan error
                 return redirect()->route('dusun.index')->with('error', 'Tidak boleh menghapus Dusun karena ada data Warga');
             }
+
+            // Hapus foto dari server
+            $dusun = DusunDetail::where('dusun_id', $id)->first();
+            if ($dusun->foto != 'default_image.jpg') {
+                Storage::delete('public/dusun' . $dusun->foto);
+            }
+
             // Hapus semua data terkait di tabel `dusun_detail`
             DusunDetail::where('dusun_id', $id)->delete();
 

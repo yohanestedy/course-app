@@ -26,8 +26,7 @@ class WargaController extends Controller
         $warga = Warga::with('dusunDetail')->find($id);
 
         // Menghitung umur berdasarkan tanggal lahir
-        $tgl_lahir = $warga->tgl_lahir;
-        $umur = Carbon::parse($tgl_lahir)->age;
+        $umur = Carbon::parse($warga->tgl_lahir)->age;
 
         // dd($warga->tgl_lahir);
 
