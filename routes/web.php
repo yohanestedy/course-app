@@ -30,10 +30,9 @@ Route::prefix('/blog')->group(function () {
     Route::get('/show/{slug}', [BlogController::class, 'show']);
 });
 
-Route::get('/login', [AuthController::class, 'login']);
-Route::get('/register', [AuthController::class, 'register']);
-
-Route::post('/register-new-user', [AuthController::class, 'register_new_user']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register/store', [AuthController::class, 'storeRegister'])->name('register.store');
 
 
 //Mini Apps
