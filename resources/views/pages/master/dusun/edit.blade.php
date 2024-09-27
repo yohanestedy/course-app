@@ -1,5 +1,9 @@
 @extends('layouts.main', ['title' => 'Edit Dusun'])
 
+@section('cssLibraries')
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('/node_modules/chocolat/dist/css/chocolat.css') }}">
+@endsection
 @section('mainContent')
     <section class="section">
         <div class="section-header">
@@ -58,7 +62,19 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <img src="{{asset('storage/dusun/' . $dusunDetail->foto)}}" width="25%">
+                                <div class="card-body">
+                                    <div class="mb-2 text-muted">Click the picture below to see the magic!</div>
+                                    <div class="chocolat-parent">
+                                        <a href="{{ asset('storage/dusun/' . $dusunDetail->foto) }}" class="chocolat-image"
+                                            title="Just an example">
+                                            <div>
+                                                <img alt="image"
+                                                    src="{{ asset('storage/dusun/' . $dusunDetail->foto) }}"
+                                                    class="img-fluid" width="25%">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
 
                             </div>
                             <div class="card-footer text-right">
@@ -90,4 +106,7 @@
             }, 500); // Sesuaikan durasi loading (1 detik di sini)
         });
     </script>
+    <!-- JS Libraies -->
+    <script src="{{ asset('node_modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+    <script src="{{ asset('node_modules/jquery-ui-dist/jquery-ui.min.js') }}"></script>
 @endsection

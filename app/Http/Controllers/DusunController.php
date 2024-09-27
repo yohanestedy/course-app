@@ -103,6 +103,7 @@ class DusunController extends Controller
     // EDIT DUSUN
     public function update(Request $request, $id)
     {
+
         $validator = Validator::make($request->all(), [
             'name'          => 'required|min:3',
             'description'   => 'required',

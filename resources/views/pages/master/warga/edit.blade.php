@@ -1,5 +1,9 @@
 @extends('layouts.main', ['title' => 'Edit Warga'])
 
+@section('cssLibraries')
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('/node_modules/chocolat/dist/css/chocolat.css') }}">
+@endsection
 @section('mainContent')
     <section class="section">
         <div class="section-header">
@@ -18,7 +22,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form id="form" action="{{ route('warga.update', ['id' => $warga->id]) }}" method="POST">
+                        <form id="form" action="{{ route('warga.update', ['id' => $warga->id]) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card-header">
@@ -32,6 +37,17 @@
                                         value="{{ old('name') ?? $warga->name }}">
                                     <div class="invalid-feedback">
                                         @error('name')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tanggal Lahir</label>
+                                    <input name="age" type="date"
+                                        class="form-control @error('age') is-invalid @enderror"
+                                        value="{{ $warga->tgl_lahir }}" min="0" max="120" step="1">
+                                    <div class="invalid-feedback">
+                                        @error('age')
                                             {{ $message }}
                                         @enderror
                                     </div>
@@ -61,7 +77,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input name="foto" type="text"
+                                    <input name="foto" type="file"
                                         class="form-control @error('foto') is-invalid @enderror"
                                         value="{{ $warga->foto }}">
                                     <div class="invalid-feedback">
@@ -69,18 +85,20 @@
                                             {{ $message }}
                                         @enderror
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Umur</label>
-                                    <input name="age" type="number"
-                                        class="form-control @error('age') is-invalid @enderror" value="{{ $warga->age }}"
-                                        min="0" max="120" step="1">
-                                    <div class="invalid-feedback">
-                                        @error('age')
-                                            {{ $message }}
-                                        @enderror
+                                    <div class="card-body">
+                                        <div class="mb-2 text-muted">Click the picture below to see the magic!</div>
+                                        <div class="chocolat-parent">
+                                            <a href="{{ asset('storage/warga/' . $warga->foto) }}" class="chocolat-image"
+                                                title="Just an example">
+                                                <div>
+                                                    <img alt="image" src="{{ asset('storage/warga/' . $warga->foto) }}"
+                                                        class="img-fluid" width="25%">
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
+
 
 
                             </div>
@@ -113,4 +131,7 @@
             }, 500); // Sesuaikan durasi loading (1 detik di sini)
         });
     </script>
+
+    <script src="{{ asset('node_modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+    <script src="{{ asset('node_modules/jquery-ui-dist/jquery-ui.min.js') }}"></script>
 @endsection
