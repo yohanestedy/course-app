@@ -43,11 +43,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Lahir</label>
-                                    <input name="age" type="date"
-                                        class="form-control @error('age') is-invalid @enderror"
-                                        value="{{ $warga->tgl_lahir }}" min="0" max="120" step="1">
+                                    <input name="tgl_lahir" type="date"
+                                        class="form-control @error('tgl_lahir') is-invalid @enderror"
+                                        value="{{ $warga->tgl_lahir }}">
                                     <div class="invalid-feedback">
-                                        @error('age')
+                                        @error('tgl_lahir')
                                             {{ $message }}
                                         @enderror
                                     </div>
