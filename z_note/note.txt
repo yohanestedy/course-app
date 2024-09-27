@@ -221,3 +221,19 @@ error handling = digunakan untuk menangani error yang terjadi pada sebuat functi
   - menyimpan file name ke database
   - validasi file
   - panggil file yg disimpan ke view / detail halaman
+
+
+Day 44 
+Authentication = 
+1. register
+    - menyimpan user baru 
+    - mengencrypt password
+2. login
+    - menyamakan credential
+3. middleware
+    - pagar pengaman bawaan dari laravel untuk mambatasi halaman mana yg harus diakses oleh tamu / user yg sudah login
+
+#TODO
+- Buat Route untuk POST register dan login
+- Buat Controller
+- Prepare Functionnya, akan ada 2 function
