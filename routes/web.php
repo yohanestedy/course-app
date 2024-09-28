@@ -33,6 +33,7 @@ Route::prefix('/blog')->group(function () {
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register/store', [AuthController::class, 'storeRegister'])->name('register.store');
+Route::post('/login/store', [AuthController::class, 'storeLogin'])->name('login.store');
 
 
 //Mini Apps

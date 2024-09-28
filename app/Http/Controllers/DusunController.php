@@ -87,6 +87,7 @@ class DusunController extends Controller
             "name" => $request->name,
             "description" => $request->description,
             "foto" => $filenameSimpan,
+            // "created_by" => Auth::user()->name
         ]);
 
         return redirect()->route('dusun.index')->with('success', 'Data Berhasil di Simpan.');
