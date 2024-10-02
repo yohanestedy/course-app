@@ -237,3 +237,9 @@ Authentication =
 - Buat Route untuk POST register dan login
 - Buat Controller
 - Prepare Functionnya, akan ada 2 function
+
+
+Day 46
+middleware = Lapisan pemisah antara resource yg terlindungi dan tidak terlindungi
+setting: 
+1. route = nambahin middleware 'auth'
