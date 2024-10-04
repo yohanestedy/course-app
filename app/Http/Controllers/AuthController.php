@@ -21,9 +21,10 @@ class AuthController extends Controller
         return view('pages.auth.register');
     }
 
-    // - menyimpan user baru 
-    // - mengencrypt password    
-    public function storeRegister(Request $request){
+    // - menyimpan user baru
+    // - mengencrypt password
+    public function storeRegister(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name'          => 'required',
             'email'         => 'required',
@@ -43,51 +44,77 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success', 'Berhasil Daftar, silahkan login.');
     }
 
-    public function storeLogin(Request $request){
+    // public function storeLogin(Request $request)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         'email'         => 'required',
+    //         'password'      => 'required',
+    //     ],);
+
+    //     if ($validator->fails()) {
+    //         return Redirect::back()->withErrors($validator)->withInput();
+    //     }
+
+    //     $credential = [
+    //         'email' => $request->email,
+    //         'password' => $request->password
+    //     ];
+
+    //     // STEP 1
+    //     // check apakah email yg diinputkan ada usernya
+    //     $user = User::where('email', $request->email)->first();
+    //     // kemungkinan output user = {.. data} / null
+    //     if (!$user) {
+    //         // return 'email empty'. $request->email;
+    //         return redirect()->back()->with('error', 'Email or Password is not Valid')->withInput();
+    //     }
+
+    //     // STEP 2
+    //     // check apakah passwordnya ini sama dengan usernya
+    //     if (!Hash::check($request->password, $user->password)) {
+    //         // return 'password wrong'. $request->password;
+    //         return Redirect::back()->with('error', 'Email or Password is not Valid')->withInput();
+    //     }
+
+    //     // STEP 3
+    //     if (Auth::attempt($credential)) {
+    //         $request->session()->regenerate();
+    //         return redirect()->intended('/')->with('login', 'Login Berhasil');
+    //     }
+
+    //     // redirect ke home page
+    // }
+
+    public function storeLogin(Request $request)
+    {
         $validator = Validator::make($request->all(), [
-            'email'         => 'required',
-            'password'      => 'required',
-        ],);
+            'email' => 'required|email', // Menambahkan validasi email
+            'password' => 'required',
+        ]);
 
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
-        $credential = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
-
-        // STEP 1
-        // check apakah email yg diinputkan ada usernya
-        // $user = User::where('email', $request->email)->first();
-        // // kemungkinan output user = {.. data} / null
-        // if(!$user){
-        //     // return 'email empty'. $request->email;
-        //     return redirect()->back()->with('error', 'email or password not valid');
-        // }
-        
-        // STEP 2
-        // check apakah passwordnya ini sama dengan usernya
-        // Auth::attempt($post)
-        // !Hash::check($fields['password'], $user->password)
-        // if (!Hash::check($request->password, $user->password)) {
-        //     // return 'password wrong'. $request->password;
-        //     return redirect()->back()->with('error', 'email or password not valid');
-        // }
-
-        // STEP 3
-        if(Auth::attempt($credential)){
-            $request->session()->regenerate();
-            return redirect()->intended('/')->with('success', 'success login');
+        $credentials = $request->only('email', 'password'); // Ambil hanya email dan password dari request
+        $user = User::where('email', $request->email)->first();
+        // Cek apakah user berhasil login
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate(); // Menghasilkan ID session baru untuk mencegah serangan session fixation
+            return redirect()->intended('/')->with([
+                'login' => 'Login Berhasil!',
+                'user_name' => $user->name // Menyimpan nama user di session
+            ]);
         }
 
-        // redirect ke home page
+        // Jika login gagal
+        return Redirect::back()->with('error', 'Email or Password is not Valid')->withInput();
     }
 
-    public function logout(){
+
+    public function logout()
+    {
         Auth::logout();
-        return redirect('/login')->with(['success' => 'seccess logout']);
+        return redirect('/login')->with(['logout' => 'Logout Success']);
     }
-
 }

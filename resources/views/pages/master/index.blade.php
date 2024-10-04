@@ -5,7 +5,41 @@
     <link rel="stylesheet" href="../node_modules/weathericons/css/weather-icons.min.css">
     <link rel="stylesheet" href="../node_modules/weathericons/css/weather-icons-wind.min.css">
     <link rel="stylesheet" href="../node_modules/summernote/dist/summernote-bs4.css">
+    <style>
+        .colored-toast.swal2-icon-success {
+            background-color: #a5dc86 !important;
+        }
+
+        .colored-toast.swal2-icon-error {
+            background-color: #f27474 !important;
+        }
+
+        .colored-toast.swal2-icon-warning {
+            background-color: #f8bb86 !important;
+        }
+
+        .colored-toast.swal2-icon-info {
+            background-color: #3fc3ee !important;
+        }
+
+        .colored-toast.swal2-icon-question {
+            background-color: #87adbd !important;
+        }
+
+        .colored-toast .swal2-title {
+            color: white;
+        }
+
+        .colored-toast .swal2-close {
+            color: white;
+        }
+
+        .colored-toast .swal2-html-container {
+            color: white;
+        }
+    </style>
 @endsection
+
 
 @section('mainContent')
     <section class="section">
@@ -74,7 +108,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-lg-8 col-md-12 col-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
@@ -357,7 +391,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
 @endsection
 
@@ -370,4 +404,35 @@
     <script src="../node_modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
 
     <script src="../assets/js/page/index-0.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if (session()->has('success'))
+            swal('Success', '{{ session('success') }}', 'success');
+        @elseif (session()->has('error'))
+            swal('Error', '{{ session('error') }}', 'error');
+        @elseif (session()->has('login'))
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                iconColor: 'white',
+                customClass: {
+                    popup: 'colored-toast',
+                },
+                showConfirmButton: false,
+                timer: 3500,
+                timerProgressBar: true,
+            })
+
+            ;
+            (async () => {
+                await Toast.fire({
+                    icon: 'success',
+                    title: '{{ session('login') }}',
+                    text: 'Welcome, {{ session('user_name') }}!',
+                })
+            })()
+        @endif
+    </script>
 @endsection

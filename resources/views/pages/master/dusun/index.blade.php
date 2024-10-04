@@ -105,6 +105,8 @@
             @elseif (session()->has('error'))
                 swal('Error', '{{ session('error') }}', 'error');
             @endif
+
+
         });
     </script>
 @endsection

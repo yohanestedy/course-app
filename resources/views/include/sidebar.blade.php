@@ -44,9 +44,25 @@
             </ul>
         </div>
         <div class="mt-auto mb-4 p-3 hide-sidebar-mini">
-            <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
+            <a id="logoutBtn" href="{{ route('logout') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> LOGOUT
             </a>
+            <script>
+                document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                    e.preventDefault(); // Mencegah submit default agar kita bisa menambahkan efek loading
+
+                    // Tambahkan kelas 'btn-progress' ke tombol
+                    this.classList.add('btn-progress');
+
+                    // Nonaktifkan tombol saat loading
+                    this.disabled = true;
+
+                    // Setelah efek loading, lanjutkan dengan submit form
+                    setTimeout(() => {
+                        window.location.href = this.href; // Redirect ke link logout
+                    }, 500); // Sesuaikan durasi loading (0,5 detik di sini)
+                });
+            </script>
         </div>
     </aside>
 </div>
