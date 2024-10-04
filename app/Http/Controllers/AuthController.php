@@ -41,7 +41,7 @@ class AuthController extends Controller
             "password" => bcrypt($request->password),
         ]);
 
-        return redirect()->route('login')->with('success', 'Berhasil Daftar, silahkan login.');
+        return redirect()->route('register')->with('register', 'Berhasil Daftar, silahkan login.');
     }
 
     // public function storeLogin(Request $request)

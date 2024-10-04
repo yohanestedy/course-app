@@ -20,12 +20,11 @@
                         </div>
 
                         <div class="card-body">
-                            <form method="POST" action="{{route('register.store')}}">
+                            <form method="POST" action="{{ route('register.store') }}">
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input id="name" type="text" class="form-control" name="name"
-                                        autofocus>
+                                    <input id="name" type="text" class="form-control" name="name" autofocus>
                                 </div>
 
                                 <div class="form-group">
@@ -47,7 +46,8 @@
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="password2" class="d-block">Password Confirmation</label>
-                                        <input id="password2" type="password" class="form-control" name="password_confirmation">
+                                        <input id="password2" type="password" class="form-control"
+                                            name="password_confirmation">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -72,4 +72,27 @@
     <script src="../node_modules/selectric/public/jquery.selectric.min.js"></script>
 
     <script src="../assets/js/page/auth-register.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if (session()->has('success'))
+            swal('Success', '{{ session('success') }}', 'success');
+        @elseif (session()->has('error'))
+            swal('Error', '{{ session('error') }}', 'error');
+        @elseif (session()->has('register'))
+
+            Swal.fire({
+                title: "Selamat",
+                icon: "success",
+                text: '{{ session('register') }}',
+                showCloseButton: true,
+                showCancelButton: false,
+                confirmButtonText: `<i class="fas fa-sign-in-alt"></i> Login`,
+            }).then((result) => {
+                if (result.isConfirmed) { // Memeriksa apakah tombol 'Login' diklik
+                    window.location.href = '{{ route('login') }}'; // Redirect ke route login
+                }
+            });
+        @endif
+    </script>
 @endsection
